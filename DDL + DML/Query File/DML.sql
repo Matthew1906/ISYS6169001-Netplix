@@ -33,31 +33,32 @@ GO
 
 -- Insert Genres
 INSERT INTO Genre VALUES
-	('GEN001', 'Horror'), ('GEN002', 'Mystery'), ('GEN003', 'Sci-Fi & Fantasy'),
+	('GEN001', 'Horror'), ('GEN002', 'Mystery'), ('GEN003', 'Fantasy'),
 	('GEN004', 'Thriller'), ('GEN005', 'Adventure'), ('GEN006', 'Soap'),
-	('GEN007', 'Comedy'), ('GEN008', 'Action & Adventure'), ('GEN009', 'Science Fiction'),
-	('GEN010', 'Drama'), ('GEN011', 'Animation'), ('GEN012', 'Action'),
-	('GEN013', 'Family'), ('GEN014', 'Talk'), ('GEN015', 'Crime')
+	('GEN007', 'Comedy'), ('GEN008', 'Science Fiction'),('GEN009', 'Drama'), 
+	('GEN010', 'Animation'), ('GEN011', 'Action'), ('GEN012', 'Family'), 
+	('GEN013', 'Talk'), ('GEN014', 'Crime')
 GO
 
 -- Insert Show Genres
 INSERT INTO ShowGenre VALUES
-	('SHW001', 'GEN012'), ('SHW001', 'GEN005'), ('SHW001', 'GEN010'), 
-	('SHW001', 'GEN009'), ('SHW002', 'GEN009'), ('SHW002', 'GEN012'),
+	('SHW001', 'GEN011'), ('SHW001', 'GEN005'), ('SHW001', 'GEN009'), 
+	('SHW001', 'GEN008'), ('SHW002', 'GEN008'), ('SHW002', 'GEN011'),
 	('SHW003', 'GEN001'), ('SHW003', 'GEN004'), ('SHW004', 'GEN007'),
-	('SHW004', 'GEN012'), ('SHW004', 'GEN005'), ('SHW004', 'GEN009'),
-	('SHW005', 'GEN015'), ('SHW005', 'GEN012'), ('SHW005', 'GEN004'), 
-	('SHW006', 'GEN012'), ('SHW006', 'GEN005'), ('SHW007', 'GEN011'),
-	('SHW007', 'GEN007'), ('SHW007', 'GEN013'), ('SHW008', 'GEN012'),
-	('SHW008', 'GEN015'), ('SHW008', 'GEN004'), ('SHW009', 'GEN015'),
-	('SHW009', 'GEN010'), ('SHW009', 'GEN004'), ('SHW010', 'GEN011'), 
-	('SHW010', 'GEN005'), ('SHW011', 'GEN003'), ('SHW011', 'GEN007'),
-	('SHW011', 'GEN015'), ('SHW012', 'GEN008'), ('SHW012', 'GEN002'),
-	('SHW012', 'GEN010'), ('SHW013', 'GEN014'), ('SHW014', 'GEN007'),
-	('SHW015', 'GEN010'), ('SHW015', 'GEN006'), ('SHW015', 'GEN007'), 
-	('SHW016', 'GEN002'), ('SHW016', 'GEN015'), ('SHW016', 'GEN010'), 
-	('SHW017', 'GEN015'), ('SHW017', 'GEN003'), ('SHW018', 'GEN014'),
-	('SHW019', 'GEN007'), ('SHW019', 'GEN010'), ('SHW020', 'GEN010')
+	('SHW004', 'GEN011'), ('SHW004', 'GEN005'), ('SHW004', 'GEN008'),
+	('SHW005', 'GEN014'), ('SHW005', 'GEN011'), ('SHW005', 'GEN004'), 
+	('SHW006', 'GEN011'), ('SHW006', 'GEN005'), ('SHW007', 'GEN010'),
+	('SHW007', 'GEN007'), ('SHW007', 'GEN012'), ('SHW008', 'GEN011'),
+	('SHW008', 'GEN014'), ('SHW008', 'GEN004'), ('SHW009', 'GEN014'),
+	('SHW009', 'GEN009'), ('SHW009', 'GEN004'), ('SHW010', 'GEN010'), 
+	('SHW010', 'GEN005'), ('SHW011', 'GEN003'), ('SHW011', 'GEN008'), 
+	('SHW011', 'GEN007'), ('SHW011', 'GEN014'), ('SHW012', 'GEN005'), 
+	('SHW012', 'GEN011'), ('SHW012', 'GEN002'), ('SHW012', 'GEN009'), 
+	('SHW013', 'GEN013'), ('SHW014', 'GEN007'), ('SHW015', 'GEN009'), 
+	('SHW015', 'GEN006'), ('SHW015', 'GEN007'), ('SHW016', 'GEN002'), 
+	('SHW016', 'GEN014'), ('SHW016', 'GEN009'), ('SHW017', 'GEN014'), 
+	('SHW017', 'GEN003'), ('SHW017', 'GEN008'), ('SHW018', 'GEN013'),
+	('SHW019', 'GEN007'), ('SHW019', 'GEN009'), ('SHW020', 'GEN009')
 GO
 
 -- Insert Actors
@@ -184,3 +185,4 @@ GO
 
 -- To check if all data has been properly inserted are properly
 EXEC sp_MSforeachtable'SELECT * FROM ?'
+
