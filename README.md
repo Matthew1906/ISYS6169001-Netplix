@@ -2,7 +2,7 @@
 
 This is Group 1's Database System Lecture Project.
 
-Our project is a called as Netplix, it is a website that helps the user to keep track of the shows (movies and TV( that they're watching.
+Our project is a called as Netplix, it is a website that helps the user to keep track of the shows (movies or TV shows) that they're watching.
 
 Our website also enables the user to add reviews and give rating to the shows they have watched.
 
