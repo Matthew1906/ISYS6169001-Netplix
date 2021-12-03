@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="show.css">
+    <title>Da Show Page</title>
+  </head>
+  <body>
+    <main class='container-fluid'>
+        <div class="row show-detail" id='show-detail'>
+            <div class='col'>
+                <img src="https://image.tmdb.org/t/p/w500/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" alt="test" class='show-image'>
+            </div>
+            <div class='col-lg-8'>
+                <div class='show-title flex roboto'>
+                    <h1 class='white'>Squid Game</h1>
+                    <div>
+                        <a href='#' class='btn btn-danger'>+ Add to Watchlist</a>
+                        <a href="#" class='btn btn-outline-light'><i class="fas fa-share-alt"></i></a>
+                    </div>
+                </div>
+                <div class='flex poppins'>
+                    <a href='#' class="genre">Action</a>
+                    <a href='#' class="genre">Drama</a>
+                    <a href='#' class="genre">Mystery</a>
+                </div>
+                <div class='flex show-info poppins white'>
+                    <div>
+                        <div><i class="fas fa-star yellow"></i></div>
+                        <div class='show-info-tag'>Rating</div>
+                        <div class='show-info-score'>8.5</div>
+                    </div>
+                    <div>
+                        <div><i class="far fa-calendar-alt blue"></i></div>
+                        <div class='show-info-tag'>Release Year</div>
+                        <div class='show-info-score'>2021</div>
+                    </div>
+                </div>
+                <div class='show-description roboto white'>
+                    <h4>Storyline</h4>
+                    <p>Hundreds of bankrupt players receive strange invitations to compete in children's games at big stakes. However, a tantalizing prize awaits the champion.</p>
+                    <h4>Hwang Dong-hyuk</h4>
+                    <p>Director</p>
+                </div>
+            </div>
+        </div>
+        <div class="show-detail" id='cast'>
+            <h2 class='white section-title'>Cast</h2>
+            <div class="row cast-detail">
+                <div class="cast-card card">
+                    <img src="https://image.tmdb.org/t/p/w500/s3Sv4bZORQ5DuZJahgU2X0RgMUQ.jpg" class="cast-image">
+                    <div class="card-body">
+                        <h5 class="card-title">Lee Jung-jae</h5>
+                        <p class="card-text">Seong Gi-hun / "No. 456"</p>
+                    </div>
+                </div>
+                <div class="cast-card card">
+                    <img src="https://image.tmdb.org/t/p/w500/hfejrQ8gjRWCheiKpJANajXT0xi.jpg" class="cast-image">
+                    <div class="card-body">
+                        <h5 class="card-title">Park Hae-soo</h5>
+                        <p class="card-text">Cho Sang-woo / "No. 218"</p>
+                    </div>
+                </div>
+                <div class="cast-card card">
+                    <img src="https://image.tmdb.org/t/p/w500/2nKZaOgwpJbJXegDISQIdfsfnm0.jpg" class="d-block w-100 cast-image">
+                    <div class="card-body">
+                        <h5 class="card-title">Jung Ho-yeon</h5>
+                        <p class="card-text">Kang Sae-byeok / "No. 067"</p>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        <div class="show-detail" id='reviews'>
+            <h2 class='white section-title'>Review</h2>
+            <div id="review-carousel" class='carousel' data-bs-ride='carousel'>
+                <div class="carousel-inner review-inner">
+                    <div class="carousel-item-active review-item">
+                        <div class=" card review-card">
+                            <div class="flex">
+                                <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="" class='reviewer'>
+                                <div class="flex-column reviewer-detail">
+                                    <h4 class='white'>Jane Doe</h4>
+                                    <p class='white'>21/11/2021</p>
+                                </div>
+                            </div>
+                            <strong class="white">Amazing Show!</strong>
+                            <p class="white">This show is unbelievable, loved it!</p>
+                            <p class='white review-rating'><i class="fas fa-star yellow"></i> 8.5/10 </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item review-item"">
+                        <div class=" card review-card">
+                            <div class="flex">
+                                <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="" class='reviewer'>
+                                <div class="flex-column reviewer-detail">
+                                    <h4 class='white'>John Dee</h4>
+                                    <p class='white'>12/11/2021</p>
+                                </div>
+                            </div>
+                            <strong class="white">Amazing Show!</strong>
+                            <p class="white">This show is unbelievable, loved it!</p>
+                            <p class='white review-rating'><i class="fas fa-star yellow"></i> 8.5/10 </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item review-item"">
+                        <div class="card review-card">
+                            <div class="flex">
+                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="" class='reviewer'>
+                                <div class="flex-column reviewer-detail">
+                                    <h4 class='white'>Joko Doe</h4>
+                                    <p class='white'>09/10/2021</p>
+                                </div>
+                            </div>
+                            <strong class="white">Amazing Show!</strong>
+                            <p class="white">This show is unbelievable, loved it!</p>
+                            <p class='white review-rating'><i class="fas fa-star yellow"></i> 8.5/10 </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item review-item"">
+                        <div class="card review-card">
+                            <div class="flex">
+                                <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="" class='reviewer'>
+                                <div class="flex-column reviewer-detail">
+                                    <h4 class='white'>Kate Doe</h4>
+                                    <p class='white'>10/10/2021</p>
+                                </div>
+                            </div>
+                            <strong class="white">Amazing Show!</strong>
+                            <p class="white">This show is unbelievable, loved it!</p>
+                            <p class='white review-rating'><i class="fas fa-star yellow"></i> 8/10 </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item review-item"">
+                        <div class="card review-card">
+                            <div class="flex">
+                                <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="" class='reviewer'>
+                                <div class="flex-column reviewer-detail">
+                                    <h4 class='white'>Jason Doe</h4>
+                                    <p class='white'>12/10/2021</p>
+                                </div>
+                            </div>
+                            <strong class="white">Amazing Show!</strong>
+                            <p class="white">This show is unbelievable, loved it!</p>
+                            <p class='white review-rating'><i class="fas fa-star yellow"></i> 9.5/10 </p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev review-control-prev" type="button" data-bs-target="#review-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next review-control-next" type="button" data-bs-target="#review-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="flex add-review">
+                <a href="#reviews" class="btn btn-danger"><i class="far fa-edit"></i> Add a Review</a>
+            </div>
+        </div>
+        <div id='recommendations' class='show-detail'>
+            <h2 class='white section-title'>More</h2>
+            <div id='rec-carousel' class="carousel" data-bs-ride='carousel'>
+                <div class="carousel-inner rec-inner">
+                    <div class="carousel-item-active rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">Venom: Let There Be Carnage</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-plus red"></i></a><i class="fas fa-star"></i> 8.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/cXUqtadGsIcZDWUTrfnbDjAy8eN.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">The Good Doctor</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-plus red"></i></a><i class="fas fa-star"></i> 9.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/uIXF0sQGXOxQhbaEaKOi2VYlIL0.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">Snake Eyes: G.I. Joe Origins</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-plus red"></i></a><i class="fas fa-star"></i>9</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/ekZobS8isE6mA53RAiGDG93hBxL.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">Lucifer</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-check white"></i></a><i class="fas fa-star"></i> 9.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">Venom: Let There Be Carnage</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-plus red"></i></a><i class="fas fa-star"></i> 8.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/cXUqtadGsIcZDWUTrfnbDjAy8eN.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">The Good Doctor</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-plus red"></i></a><i class="fas fa-star"></i> 9.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/uIXF0sQGXOxQhbaEaKOi2VYlIL0.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">Snake Eyes: G.I. Joe Origins</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-plus red"></i></a><i class="fas fa-star"></i>9</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item rec-item">
+                        <div class="card rec-card">
+                            <img src="https://image.tmdb.org/t/p/w500/ekZobS8isE6mA53RAiGDG93hBxL.jpg" class='rec-image'>
+                            <div class="card-body rec-body">
+                                <h5 class="card-title white rec-title">Lucifer</h5>
+                                <div class='flex justify-content-between white'>
+                                    <p>2021</p>
+                                    <p class='yellow'><a href="#"><i class="fas fa-check white"></i></a><i class="fas fa-star"></i> 9.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev rec-control-prev" type="button" data-bs-target="#rec-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next rec-control-next" type="button" data-bs-target="#rec-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src="show.js"></script>    
+</body>
+</html>
