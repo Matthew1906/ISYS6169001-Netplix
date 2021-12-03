@@ -1,0 +1,176 @@
+html{
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    background-color: #121219;
+}
+
+h1{
+    font-family: Roboto, sans-serif;
+}
+
+h4{
+    font-family: Roboto, sans-serif;
+    font-size: 1.3rem;
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3em;
+}
+
+.text--green{
+    color: #6DFF7C;
+}
+
+.text--red{
+    color: #FB3842;
+}
+
+.text--blue{
+    color: #45F4FF;
+}
+
+.title-section{
+    color: #FFFFFF;
+    min-height: 120px;
+    gap: 2%;
+}
+
+.title-section span{
+    margin-left: 3%;
+}
+
+.bookmark-icon{
+    font-size: 3rem;
+}
+
+
+.search-section{
+    justify-content: space-between;
+    min-height: 100px;
+    align-items: flex-start;
+}
+
+
+.search-section__bar{
+    background-color: #4B4B4B;
+    width: 85%;
+    justify-content: space-between;
+    padding: 0.75em 1.5%;
+    border-radius: 50px;
+}
+
+.search-section__input{
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    opacity: 0.5;
+    width: 100%;
+}
+
+.search-section__input:focus{
+    outline: none;
+}
+
+.search-icon{
+    color: #FFFFFF;
+    opacity: 0.5;
+    font-size: 1.4rem;
+}
+
+.search-section__filter{
+    width: 13%;
+    border-radius: 50px;
+    border: solid #FFFFFF 1px;
+    color: #FFFFFF;
+    opacity: 0.5;
+    justify-content: center;
+    gap: 10%;
+    padding: 0.65em 0.5%;
+}
+
+.search-section__filter h4{
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.slider-icon{
+    font-size: 1.6rem;
+}
+
+.watchlist-title{
+    color: #FFFFFF;
+    opacity: 0.8;
+}
+
+.watchlist-title h4{
+    font-weight: 400;
+}
+.row-item{
+    width: 20%;
+}
+
+.watchlist-card{
+    background-color: #1B1B1E;
+}
+
+.watchlist-card__poster{
+    background-image: url('./poster.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 150px;
+}
+
+.watchlist-card__title{
+    color: #FFFFFF;
+    font-weight: 400;
+}
+
+
+
+.watchlist-card__status{
+    font-weight: 400;
+}
+
+.rating{
+    color: #FFB000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.load-btn{
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    background-color: #E50914;
+    color: #FFFFFF;
+    padding: 0.5em 2em;
+    border-radius: 50px;
+    align-self: center;
+    align-items: center;
+}
+
+.arrow-down{
+    font-size: 2.5rem;
+    margin-left: 0.3em;
+}
