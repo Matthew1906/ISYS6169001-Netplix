@@ -1,0 +1,43 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: black;
+}
+.genre{
+    background-color: #2D2D2D;
+    text-decoration: none;
+    color: white;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    height: 2.5vw;
+    align-items: center;
+    border-radius: 25px;
+    margin: 0 2.5vw;
+}
+.genre:hover, .sort:hover, .genre:active, .sort:active{
+    background-color: #E50914;
+    color: white;
+}
+.sort{
+    background-color: #2D2D2D;
+    text-decoration: none;
+    color: white;
+    width: 7.5vw;
+    display: flex;
+    justify-content: center;
+    height: 2.5vw;
+    align-items: center;
+    border-radius: 25px;
+    margin: 0 1vw;
+}
+.movie-image{
+    width: 15vw;
+    height: auto;
+    border-radius: 25px;
+}
