@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  background: #1f1f1f;
+}
+
+.logo {
+  padding-left: 20px;
+}
+
+.logo a:last-child:hover {
+  color: white;
+}
+.logo a:first-child:hover {
+  color: #fb3842;
+}
+
+.netplix {
+  font-style: normal;
+  font-weight: normal;
+  font-family: Haettenschweiler;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: 0.02em;
+  color: #fb3842;
+  padding-right: 10px;
+  text-decoration: none;
+}
+
+.register {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  padding-left: 15px;
+  color: white;
+  text-decoration: none;
+  border-left: 3px solid white;
+}
+
+.back-button a {
+  size: 400%;
+}
+
+section {
+  background-color: #121219;
+  padding-bottom: 50px;
+}
+
+.container {
+  color: white;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+}
+
+.hello p {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 60px;
+  padding-left: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.netplix1 p {
+  font-style: normal;
+  font-weight: normal;
+  font-family: Haettenschweiler;
+  font-size: 56px;
+  line-height: 50px;
+  letter-spacing: 0.02em;
+  color: #fb3842;
+  padding-left: 10px;
+  text-decoration: none;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+.form-box {
+  display: flex;
+  align-items: center;
+  background: #1f1f1f;
+  border-radius: 10px;
+  height: 75px;
+  margin: 18px;
+  width: 830px;
+}
+
+.label {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 27px;
+  margin-top: 18px;
+  margin-left: 30px;
+  width: 200px;
+  color: #ffffff;
+}
+
+.input input {
+  /* margin-left: 272px; */
+  border: none;
+  outline: none;
+  color: white;
+  background-color: transparent;
+
+  font-family: Poppins;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 36px;
+  color: #ffffff;
+}
+
+.register-button {
+  background-color: #e50914;
+  border-radius: 50px;
+  margin: 18px;
+}
+
+.reg1 {
+  margin-top: 60px;
+  display: flex;
+  width: 830px;
+  height: 63px;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-text {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 27px;
+  padding-right: 10px;
+}
+
+.button-text input {
+  border: none;
+  background-color: #e50914;
+  outline: none;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.button-arrow {
+  color: white;
+}
+
+.login-now {
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.login-now-text {
+  text-decoration: none;
+  color: #fb3842;
+}
+
+.login-now-text:hover {
+  color: white;
+}
