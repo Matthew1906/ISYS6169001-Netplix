@@ -218,7 +218,7 @@
                 </div>
             </div>
             <div class="container-fluid movie-body">
-                <div class="row mt-5 movie-content d-flex justify-content-center">
+                <divg class="row mt-5 movie-content d-flex justify-content-center">
                     <div class="col-xl-2 col-5 me-5">
                         <img src=" https://picsum.photos/200/300?random=10" class="movie-image" alt="...">
                         <div class="movie-title fs-5">Squid Game</div>
@@ -309,7 +309,7 @@
                                     class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
                         </div>
                     </div>
-                </div>
+                </divg>
 
             </div>
         </div>
