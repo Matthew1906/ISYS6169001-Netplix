@@ -9,7 +9,7 @@ if (window.matchMedia("(min-width: 768px)").matches) {
   var cardWidth = $(".review-item").width();
   var scrollPosition = 0;
   $("#review-carousel .review-control-next").on("click", function () {
-    if (scrollPosition < carouselWidth - cardWidth * 3) {
+    if (scrollPosition < carouselWidth - cardWidth * 4) {
       scrollPosition += cardWidth;
       $("#review-carousel .review-inner").animate(
         { scrollLeft: scrollPosition },
@@ -42,7 +42,7 @@ if (window.matchMedia("(min-width: 768px)").matches) {
   var cardWidth = $(".rec-item").width();
   var scrollPosition = 0;
   $("#rec-carousel .rec-control-next").on("click", function () {
-    if (scrollPosition < carouselWidth - cardWidth * 3) {
+    if (scrollPosition < carouselWidth - cardWidth * 4) {
       scrollPosition += cardWidth;
       $("#rec-carousel .rec-inner").animate(
         { scrollLeft: scrollPosition },

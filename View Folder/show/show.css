@@ -1,6 +1,6 @@
 main{
-    background-color: #1F1F1F;
-    padding:0.5rem;
+    background-color:#121219;
+    padding: 0 0.5rem;
 }
 
 p{
@@ -46,6 +46,17 @@ p{
 }
 
 /* Show Detail */
+.bg-image{
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+#show-detail{
+    background-color: rgba(0,0,0,0.5);
+}
 
 .show-detail{
     padding:2.5rem 7.5rem;
@@ -157,7 +168,7 @@ p{
 /* Reviews */
 
 .review-card{
-    background-color: #1F1F1F;
+    background-color: rgba(0,0,0,0);
     border-color: #E50914;
     border-radius:20px;
     padding:1.5rem;
@@ -187,11 +198,12 @@ p{
     justify-content: center;
 }
 
-.review-inner {
+.review-inner, .rec-inner {
     padding: 1em;
 }
 
-.review-control-next, .review-control-prev {
+.review-control-next, .review-control-prev,
+.rec-control-next, .rec-control-prev {
     background-color: #e1e1e1;
     width: 6vh;
     height: 6vh;
@@ -201,17 +213,18 @@ p{
 }
 
 @media (min-width: 768px) {
-    .review-item {
+    .review-item, .rec-item {
       margin-right: 0;
       flex: 0 0 33.333333%;
       display: block;
     }
-    .review-inner {
+    .review-inner, .rec-inner {
       display: flex;
     }
 }
 
-.review-card .img-wrapper {
+.review-card .img-wrapper,
+.rec-card .img-wrapper {
     max-width: 100%;
     height: 13em;
     display: flex;
@@ -219,12 +232,13 @@ p{
     align-items: center;
 }
 
-.review-card img {
+.review-card img, .rec-card img {
     max-height: 100%;
 }
   
 @media (max-width: 767px) {
-    .review-card .img-wrapper {
+    .review-card .img-wrapper, 
+    .rec-card .img-wrapper {
       height: 17em;
     }
 }
@@ -232,8 +246,9 @@ p{
 .rec-card{
     background-color: #1F1F1F;
     border:none;
+    border-radius: 20px;
     width:12.5rem;
-    height:75rem;
+    height:25rem;
     margin: 0;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
 }
@@ -256,48 +271,7 @@ p{
     margin: 0 0.5rem;
 }
 
-.rec-inner{
-    padding:1em;
-}
-
 .carousel-item-active{
     margin-left:2.25em;
 }
 
-.rec-control-next, .rec-control-prev {
-    background-color: #e1e1e1;
-    width: 6vh;
-    height: 6vh;
-    border-radius: 50%;
-    top: 12.5%;
-    /* transform: translateY(-50%); */
-}
-
-@media (min-width: 768px) {
-    .rec-item {
-      margin-right: 0;
-      flex: 0 0 33.333333%;
-      display: block;
-    }
-    .rec-inner {
-      display: flex;
-    }
-}
-
-.rec-card .img-wrapper {
-    max-width: 100%;
-    height: 13em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.rec-card img {
-    max-height: 100%;
-}
-  
-@media (max-width: 767px) {
-    .rec-card .img-wrapper {
-      height: 17em;
-    }
-}
