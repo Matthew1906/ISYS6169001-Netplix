@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-.carousel-item {
+.carousel-header {
     height: 40rem;
 }
 
@@ -15,7 +15,7 @@
     z-index: 3;
 }
 
-.carousel-inner::before {
+.carousel-header::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -75,4 +75,41 @@
 
 .card-info {
     word-spacing: 8px;
+}
+
+.genre {
+    background-color: #2d2d2d;
+    text-decoration: none;
+    color: white;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    height: 2.5vw;
+    align-items: center;
+    border-radius: 25px;
+    margin: 0 2.5vw;
+}
+.genre:hover,
+.sort:hover,
+.genre:active,
+.sort:active {
+    background-color: #e50914;
+    color: white;
+}
+.sort {
+    background-color: #2d2d2d;
+    text-decoration: none;
+    color: white;
+    width: 7.5vw;
+    display: flex;
+    justify-content: center;
+    height: 2.5vw;
+    align-items: center;
+    border-radius: 25px;
+    margin: 0 1vw;
+}
+.movie-image {
+    width: 15vw;
+    height: auto;
+    border-radius: 25px;
 }

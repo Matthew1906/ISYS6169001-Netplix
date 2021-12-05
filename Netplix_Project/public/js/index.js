@@ -5,9 +5,10 @@ $(document).ready(function() {
         item : 5,
         pauseOnHover: true,
         slideMargin : 30,
-        controls : false,
         onSliderLoad: function() {
             $('#autoWidth').removeClass('cS-hidden');
         } 
     });
 });
+
+
