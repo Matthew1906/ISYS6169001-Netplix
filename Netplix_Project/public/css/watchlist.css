@@ -9,17 +9,23 @@ h4 {
     font-size: 1.3rem;
 }
 
-.container {
+.watchlist{
+    background-color: #121219;
+    padding: 2em 0 4em 0;
+}
+
+
+.cust-container {
     width: 90%;
     margin: 0 auto;
 }
 
-.row {
+.cust-row {
     display: flex;
     align-items: center;
 }
 
-.col {
+.cust-col {
     display: flex;
     flex-direction: column;
     gap: 1.3em;
@@ -121,7 +127,7 @@ h4 {
 }
 
 .watchlist-card__poster {
-    background-image: url("./poster.jpg");
+    background-image: url("https://traxonsky.com/wp-content/uploads/2021/09/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_FMjpg_UX1000_.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     min-height: 150px;
