@@ -98,12 +98,13 @@ h4 {
     opacity: 0.5;
     justify-content: center;
     gap: 10%;
-    padding: 0.65em 0.5%;
+    padding: 0.75em 0.5%;
 }
 
 .search-section__filter h4 {
     font-size: 1.4rem;
     font-weight: 400;
+    margin: 0;
 }
 
 .slider-icon {
