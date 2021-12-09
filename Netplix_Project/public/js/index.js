@@ -9,6 +9,18 @@ $(document).ready(function() {
             $('#autoWidth').removeClass('cS-hidden');
         } 
     });
+    
+    const autoplaySlider2 = $('.movie-genre-carousel').lightSlider({
+        auto:true,
+        loop:true,
+        item : 6,
+        pauseOnHover: true,
+        slideMargin : 50,
+        pager:false,
+        onSliderLoad: function() {
+            $('#autoWidth2').removeClass('cS-hidden');
+        } 
+    });
 });
 
 

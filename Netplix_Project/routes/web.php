@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\WatchListController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('show-home');
+Route::get('/watchlist', [WatchListController::class, 'index'])->name('show-watchlist');
+Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('show-movie');

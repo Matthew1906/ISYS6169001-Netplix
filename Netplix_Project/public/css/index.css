@@ -4,6 +4,7 @@
 
 .carousel-header {
     height: 40rem;
+    position: relative;
 }
 
 .carousel-item > img {
@@ -12,15 +13,16 @@
 }
 
 .carousel-indicators {
-    z-index: 3;
+    z-index: 10;
 }
 
-.carousel-header::before {
+.carousel::before {
     content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    top: 0;
+    z-index: 2;
     background: linear-gradient(
         73.45deg,
         rgba(0, 0, 0, 0.72) 35.09%,
@@ -28,8 +30,12 @@
     );
 }
 
+.carousel-caption {
+    z-index: 5;
+}
+
 .carousel-content {
-    z-index: 2;
+    padding-bottom: 8rem;
 }
 
 .carousel-title {
@@ -39,6 +45,7 @@
 .carousel-text {
     font-family: "Nunito";
     width: 30rem;
+    text-align: left;
 }
 
 .carousel-sub {
@@ -56,10 +63,6 @@
 
 .main-body {
     background-color: #121219;
-}
-
-.movie-carousel {
-    list-style: none;
 }
 
 .card {
@@ -81,14 +84,12 @@
     background-color: #2d2d2d;
     text-decoration: none;
     color: white;
-    width: 10vw;
     display: flex;
     justify-content: center;
-    height: 2.5vw;
     align-items: center;
     border-radius: 25px;
-    margin: 0 2.5vw;
 }
+
 .genre:hover,
 .sort:hover,
 .genre:active,
@@ -108,8 +109,9 @@
     border-radius: 25px;
     margin: 0 1vw;
 }
+
 .movie-image {
     width: 15vw;
     height: auto;
-    border-radius: 25px;
+    border-radius: 15px;
 }

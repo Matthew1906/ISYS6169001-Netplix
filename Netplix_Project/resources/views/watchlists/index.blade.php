@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="WatchlistStyles.css">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app',['title' => 'Wachlist'])
+@section('library')
+    <link rel="stylesheet" href="{{ asset('css/watchlist.css') }}">
+@endsection
+@section('content')
     <div class="title-section container row">
         <i class="fa fa-bookmark bookmark-icon text--red"></i>
         <h1 class="row">My<span class="text--red">Watchlist</span></h1>
     </div>
 
-    <div class="search-section container row">
+    <div class="search-section container">
         <div class="search-section__bar row">
             <input type="text" name="" id="" placeholder="Search your watchlist..." class="search-section__input">
             <i class="fa fa-search search-icon"></i>
@@ -99,7 +90,4 @@
         </button>
 
     </div>
-    
-
-</body>
-</html>
+@endsection

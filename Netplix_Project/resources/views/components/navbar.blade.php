@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1F1F1F">
     <div class="container">
-        <a class="navbar-brand logo fs-3" href="" style="">
+        <a class="navbar-brand logo fs-3" href="{{ route('show-home') }}">
             Netplix
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -10,13 +10,14 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-light" aria-current="page" href="#">Home</a>
+                    <a class="nav-link text-light" aria-current="page" href="{{ route('show-home') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" aria-current="page" href="#">Movies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" aria-current="page" href="#">My Watchlist</a>
+                    <a class="nav-link text-light" aria-current="page" href="{{ route('show-watchlist') }}">My
+                        Watchlist</a>
                 </li>
                 @guest
                     <li class="nav-item px-lg-3">
