@@ -174,7 +174,7 @@
                     <a href="#" class="btn sort">Rating</a>
                 </div>
             </div>
-            <div class="container-fluid movie-body">
+            <div class="container-fluid movie-body" id="movie-section">
                 <div class="row mt-5 mb-5 gy-3 movie-content d-flex justify-content-center">
                     <div class="col-xl-2 col-5 me-5">
                         <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"

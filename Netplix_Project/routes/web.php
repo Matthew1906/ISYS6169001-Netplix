@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\WatchListController;
+namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('show-home');
+
 Route::get('/watchlist', [WatchListController::class, 'index'])->name('show-watchlist');
 Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('show-movie');
+
+Route::get('/login', [Auth\LoginController::class, 'index'])->name('show-login');
+Route::post('/login', [Auth\LoginController::class, 'login'])->name('login');
+
+Route::get('/register', [Auth\RegisterController::class, 'index'])->name('show-register');
+Route::post('/register', [Auth\RegisterController::class, 'register'])->name('register');
+
+Route::get('/profile', [UserController::class, 'index'])->name('show-profile');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('logout');
+});
