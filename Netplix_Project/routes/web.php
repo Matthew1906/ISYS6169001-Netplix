@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('show-home');
 
 Route::get('/watchlist', [WatchListController::class, 'index'])->name('show-watchlist');
-Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('show-movie');
+Route::get('/movie/{movie:show_id}', [MovieController::class, 'show'])->name('show-movie');
 
 Route::get('/login', [Auth\LoginController::class, 'index'])->name('show-login');
 Route::post('/login', [Auth\LoginController::class, 'login'])->name('login');

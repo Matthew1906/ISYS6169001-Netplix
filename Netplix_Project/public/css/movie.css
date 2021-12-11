@@ -27,7 +27,10 @@
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    background-image: url("https://image.tmdb.org/t/p/w500/qw3J9cNeLioOLoR68WX7z79aCdK.jpg");
+}
+
+.row {
+    --bs-gutter-x: 0;
 }
 
 #show-detail {
@@ -162,4 +165,8 @@
 
 .review-rating {
     font-size: 1.5rem;
+}
+
+.reviewer {
+    border-radius: 50%;
 }

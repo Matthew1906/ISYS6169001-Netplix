@@ -67,6 +67,13 @@
         </div>
     </section>
     <section class="main-body">
+        <div class="container-fluid py-3">
+            <div class="ps-3 text-light">
+                <i class="fas fa-fire fs-3"></i>
+                <span class="fs-3 ms-3 fw-bold">Trending</span>
+            </div>
+            <hr class="dropdown-divider mb-3 text-light">
+        </div>
         <ul class="movie-carousel card-group list-unstyled cs-hidden text-light" id="autoWidth">
             <li class="card">
                 <a href=""><img src=" https://picsum.photos/200/300?random=5" class="card-img-top" alt="..."></a>
@@ -140,7 +147,7 @@
             </li>
         </ul>
         <div class="container-fluid p-3 text-light">
-            <div class="row movie-title mb-5">
+            <div class="row movie-title mb-3">
                 <div class="col d-flex flex-row justify-content-between">
                     <div class="ps-3">
                         <i class="fas fa-film fs-3"></i>
@@ -151,17 +158,12 @@
                         placeholder="Search movie...">
                 </div>
             </div>
-            <div class="movie-genre w-100 position-relative px-2">
+            <hr class="dropdown-divider">
+            <div class="movie-genre w-100 position-relative px-2 mt-5">
                 <ul class="movie-genre-carousel d-flex list-unstyled text-light cs-hidden text-light" id="autoWidth2">
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
-                    <li><a href="" class="btn genre" role="button">Action</a></li>
+                    @foreach ($genres as $genre)
+                        <li><a href="" class="btn genre" role="button">{{ $genre->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <div class="mt-5 row movie-sort">
@@ -176,108 +178,21 @@
             </div>
             <div class="container-fluid movie-body" id="movie-section">
                 <div class="row mt-5 mb-5 gy-3 movie-content d-flex justify-content-center">
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
+                    @foreach ($movies as $movie)
+                        <div class="col-xl-2 col-5 me-5">
+                            <a href="{{ route('show-movie', $movie->show_id) }}"><img src="{{ $movie->image_url }}"
+                                    class="movie-image" alt="..."></a>
+                            <div class="movie-title fs-5">{{ $movie->title }}</div>
+                            <div class="d-flex justify-content-between">
+                                <p class="text-muted">{{ substr($movie->release_date, 0, 4) }}</p>
+                                <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
+                                        class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-5 me-5">
-                        <a href=""><img src=" https://picsum.photos/200/300?random=10" class="movie-image"
-                                alt="..."></a>
-                        <div class="movie-title fs-5">Squid Game</div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">2021</p>
-                            <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                    class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            {{ $movies->links() }}
         </div>
     </section>
 

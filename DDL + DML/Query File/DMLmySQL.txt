@@ -138,11 +138,11 @@ INSERT INTO Cast VALUES
  
 
 -- Insert Users
-INSERT INTO User (`user_id`, `name`, email, `password`, dob, date_joined, phone) VALUES
+INSERT INTO Users (`user_id`, `name`, email, `password`, dob, date_joined, phone) VALUES
 	('USR000', 'admin', 'admin@admin.com', 'admin', CAST('1990-10-10' AS DATE), CAST('2020-12-10' AS DATE), '084942916507');
  
 
-INSERT INTO User VALUES
+INSERT INTO Users VALUES
 	('USR001', 'Timothy Riley', 'timotheerailee@hotmail.com', '^48O)Pgn7p', CAST('1928-05-22' AS DATE), CAST('2021-04-14' AS DATE), '0807609134', 'https://randomuser.me/api/portraits/men/74.jpg'),
 	('USR002', 'Dawn Allen', 'dawnhascome@allen.info', 'Jq3Y1vS0n#', CAST('1910-07-04' AS DATE), CAST('2021-06-29' AS DATE), '08776174368', 'https://randomuser.me/api/portraits/women/72.jpg'),
 	('USR003', 'Sara Cox', 'saracox189@gmail.com', '*XwWsBwwf0', CAST('2001-10-10' AS DATE), CAST('2021-10-05' AS DATE), '0821504128', 'https://randomuser.me/api/portraits/women/4.jpg'),
