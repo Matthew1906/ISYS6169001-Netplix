@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('show-home');
+Route::get('/', [MovieController::class, 'index'])->name('show-home');
 
-Route::get('/watchlist', [WatchListController::class, 'index'])->name('show-watchlist');
 Route::get('/movie/{movie:show_id}', [MovieController::class, 'show'])->name('show-movie');
 
 Route::get('/login', [Auth\LoginController::class, 'index'])->name('show-login');
@@ -27,7 +26,11 @@ Route::get('/register', [Auth\RegisterController::class, 'index'])->name('show-r
 Route::post('/register', [Auth\RegisterController::class, 'register'])->name('register');
 
 Route::get('/profile', [UserController::class, 'index'])->name('show-profile');
+Route::put('/profile', [UserController::class, 'update'])->name('update-profile');
+
+Route::post('review/{movie:show_id}', [ReviewController::class, 'store'])->name('store-review');
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('/watchlist', [WatchListController::class, 'index'])->name('show-watchlist');
 });

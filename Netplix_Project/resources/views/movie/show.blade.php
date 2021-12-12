@@ -30,12 +30,12 @@
                         <div>
                             <div><i class="fas fa-star text-warning"></i></div>
                             <div class='show-info-tag'>Rating</div>
-                            <div class='show-info-score'>{{ 0.0 }}</div>
+                            <div class='show-info-score'>{{ $movie->rating }}</div>
                         </div>
                         <div>
                             <div><i class="far fa-calendar-alt text-primary"></i></div>
                             <div class='show-info-tag'>Release Year</div>
-                            <div class='show-info-score'>{{ substr($movie->release_date, 0, 4) }}</div>
+                            <div class='show-info-score'>{{ $movie->release_date->format('Y') }}</div>
                         </div>
                     </div>
                     <div class='show-description roboto'>
@@ -66,45 +66,96 @@
             <div class="card-group review-carousel cs-hidden text-light" id="autoWidth3">
                 @forelse ($reviews as $review)
                     <div class="card review-card">
-                        <div class="d-flex">
-                            <img src="{{ $review->user->image_url }}" class='reviewer'>
+                        <div class="d-flex align-items-center mb-3">
+                            @if ($review->user->image_url)
+                                <img src="{{ $review->user->image_url }}" class='reviewer'>
+                            @else
+                                <span style="font-size:5.5rem">
+                                    <i class="fas fa-user-circle"></i>
+                                </span>
+                            @endif
                             <div class="flex-column reviewer-detail">
                                 <h4>{{ $review->user->name }}</h4>
-                                <p>{{ $review->review_date }}</p>
+                                <p>{{ $review->review_date->diffForHumans() }}</p>
                             </div>
                         </div>
-                        <strong>Amazing Show!</strong>
                         <p class="lead text-muted">{{ $review->body }}</p>
-                        <p class='review-rating fw-bolder'><i class="text-warning fas fa-star yellow"></i> 8.5/10 </p>
+                        <p class='review-rating fw-bolder'><i class="text-warning fas fa-star yellow"></i>
+                            {{ $review->rating }} / 10 </p>
                     </div>
                 @empty
-                    <div>
-                        There are still no comment
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-danger">
+                                <p>There is no Review</p>
+                            </div>
+                        </div>
                     </div>
                 @endforelse
             </div>
-            <div class="d-flex justify-content-center mt-3">
-                <a href="" class="btn btn-danger"><i class="far fa-edit"></i> Add a Review</a>
-            </div>
+            @can('review', $movie)
+                <div class="d-flex justify-content-center mt-3" id="review-container">
+                    <button class="btn btn-danger add-review-btn"><i class="far fa-edit"></i> Add a
+                        Review</button>
+                </div>
+            @endcan
         </div>
         <section class='container p-3 text-light'>
             <h2 class='section-title mb-5'>More</h2>
             <ul class="movie-carousel card-group list-unstyled cs-hidden text-light" id="autoWidth">
-                @foreach ($movies as $movie)
+                @foreach ($movies as $currMovie)
                     <li class="card movie-card">
-                        <a href="{{ route('show-movie', $movie->show_id) }}"><img src="{{ $movie->image_url }}"
-                                class="card-img-top" alt="..."></a>
+                        <a href="{{ route('show-movie', $currMovie->show_id) }}"><img
+                                src="{{ $currMovie->image_url }}" class="card-img-top" alt="..."></a>
                         <div class="card-body">
-                            <h5 class="card-title">$movie->title</h5>
+                            <h5 class="card-title">{{ $currMovie->title }}</h5>
                             <div class="d-flex justify-content-between">
-                                <p class="text-muted">{{ substr($movie->release_date, 0, 4) }}</p>
+                                <p class="text-muted">{{ $currMovie->release_date->format('Y') }}</p>
                                 <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                        class="text-warning"><i class="fas fa-star text-warning"></i> 8.5</span></p>
+                                        class="text-warning"><i class="fas fa-star text-warning"></i>
+                                        {{ $currMovie->rating }}</span></p>
                             </div>
                         </div>
                     </li>
                 @endforeach
             </ul>
-            </s>
         </section>
+        <script>
+            const reivewContainer = document.querySelector('#review-container');
+            const addButton = document.querySelector('.add-review-btn');
+            if (addButton) {
+                addButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    addButton.style.display = "none";
+                    reivewContainer.classList.remove('justify-content-center');
+                    reivewContainer.innerHTML += `
+                    <form action="{{ route('store-review', $movie->show_id) }}" method="POST" class="mb-4 w-75">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating (1 To 10)</label>
+                        <input type="number" class="form-control @error('rating')is-invalid @enderror" name="rating"
+                            value="{{ old('rating') ?? '' }}" min="1" max="10">
+                        @error('rating')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label for="description"
+                            class="form-label @error('description')is-invalid @enderror">Body</label>
+                        <textarea class="form-control" name="description"
+                            rows="3">{{ old('description') ?? '' }}</textarea>
+                        @error('description')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                </form>
+                    `;
+                })
+            }
+        </script>
     @endsection

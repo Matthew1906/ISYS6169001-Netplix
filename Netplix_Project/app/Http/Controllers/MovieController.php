@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cast;
+use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -10,6 +11,70 @@ use Illuminate\Support\Facades\DB;
 
 class MovieController extends Controller
 {
+
+    public function index(Request $request)
+    {
+
+        $movies = Movie::paginate(5);
+
+        $latestMovies = Movie::latest('release_date')->take(5)->get();
+
+        $genres = Genre::get();
+
+        $randomMovies = Movie::inRandomOrder()->limit(3)->get();
+
+        $pages = Movie::count() / 5;
+
+        if ($request->ajax() && $request->page) {
+            $view = view('movie.data', compact('movies'))->render();
+            return response()->json(['html' => $view]);
+        } else if ($request->ajax() && $request->genre && !$request->sort) {
+            $moviesGenres = Movie::join('showgenre', 'show.show_id', '=', 'showgenre.show_id')
+                ->join('genre', 'showgenre.genre_id', '=', 'genre.genre_id')
+                ->where('genre.name', $request->genre)->get();
+            $view = view('movie.data', ['movies' => $moviesGenres])->render();
+            return response()->json(['html' => $view]);
+        } else if ($request->ajax() && !$request->genre && $request->sort) {
+            $moviesSort = '';
+            if ($request->sort == 'Latest') {
+                $moviesSort = Movie::latest('release_date')->get();
+            } else if ($request->sort == 'A-Z') {
+                $moviesSort = Movie::select('*')->orderBy('title')->get();
+            } else if ($request->sort == 'Z-A') {
+                $moviesSort = Movie::select('*')->orderBy('title', 'desc')->get();
+            } else if ($request->sort == 'Rating') {
+                $moviesSort = Movie::get();
+                $moviesSort = $moviesSort->sortBy(function ($currMovieSort) {
+                    return $currMovieSort->rating;
+                });
+                $moviesSort = $moviesSort->reverse();
+            }
+            $view = view('movie.data', ['movies' => $moviesSort])->render();
+            return response()->json(['html' => $view]);
+        } else if ($request->ajax() && $request->genre && $request->sort) {
+            $moviesMix = Movie::join('showgenre', 'show.show_id', '=', 'showgenre.show_id')
+                ->join('genre', 'showgenre.genre_id', '=', 'genre.genre_id')
+                ->where('genre.name', $request->genre);
+            if ($request->sort == 'Latest') {
+                $moviesMix = $moviesMix->orderBy('release_date', 'desc')->get();
+            } else if ($request->sort == 'A-Z') {
+                $moviesMix = $moviesMix->orderBy('title')->get();
+            } else if ($request->sort == 'Z-A') {
+                $moviesMix = $moviesMix->orderBy('title', 'desc')->get();
+            } else if ($request->sort == 'Rating') {
+                $moviesMix = $moviesMix->get();
+                $moviesMix = $moviesMix->sortBy(function ($currMovieSort) {
+                    return $currMovieSort->rating;
+                });
+                $moviesMix = $moviesMix->reverse();
+            };
+            $view = view('movie.data', ['movies' => $moviesMix])->render();
+            return response()->json(['html' => $view]);
+        }
+
+        return view('movie.index', compact('movies', 'latestMovies', 'genres', 'randomMovies', 'pages'));
+    }
+
     public function show(Movie $movie)
     {
         $genres = DB::table('showgenre')

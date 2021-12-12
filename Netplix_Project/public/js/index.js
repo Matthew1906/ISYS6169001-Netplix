@@ -12,7 +12,6 @@ $(document).ready(function() {
     
     const autoplaySlider2 = $('.movie-genre-carousel').lightSlider({
         auto:true,
-        loop:true,
         item : 6,
         pauseOnHover: true,
         slideMargin : 50,

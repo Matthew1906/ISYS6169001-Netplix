@@ -22,10 +22,19 @@
                             Watchlist</a>
                     </li>
                     <li class="nav-item dropdown fs-3 d-flex align-items-center mx-3">
-                        <span class="nav-link p-0" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="fas fa-user-circle"></i>
-                        </span>
+                        @if (Auth::user()->image_url)
+                            <span class="nav-link p-0 d-flex" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ Auth::user()->image_url }}" class="rounded-circle"
+                                    style="width : 1.5rem;height : 1.5rem;object-fit: cover">
+                            </span>
+                        @else
+                            <span class="nav-link p-0" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+
+                        @endif
                         <ul class="dropdown-menu dropdown-menu-end p-3">
                             <li><a class="dropdown-item" href=" {{ route('show-profile') }} ">Profile</a>
                             </li>

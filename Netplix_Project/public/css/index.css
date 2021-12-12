@@ -115,3 +115,11 @@
     height: auto;
     border-radius: 15px;
 }
+
+.active-genre {
+    background-color: #e50914;
+}
+
+.active-sort {
+    background-color: #e50914;
+}

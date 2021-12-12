@@ -1,0 +1,46 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+body {
+    background-color: black;
+}
+.form-content {
+    background-color: #1f1f1f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+input {
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    width: 75%;
+    font-size: 1vw;
+}
+label {
+    width: 25%;
+    font-weight: bold;
+}
+input:focus {
+    color: white;
+}
+.name {
+    color: white;
+}
+.email {
+    color: white;
+    opacity: 50%;
+}
+.job {
+    color: white;
+    opacity: 50%;
+}
+
+input:-webkit-autofill {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffff !important;
+}

@@ -67,6 +67,11 @@
     background-color: #e50914;
 }
 
+.alert-danger {
+    background-color: #e50914;
+    color: #fff;
+}
+
 .show-title .btn-outline-light {
     margin: 0 1.5rem;
     font-size: 1.5rem;
@@ -151,20 +156,17 @@
     border: 1px solid #e50914 !important;
     border-radius: 20px !important;
     padding: 2rem;
-    height: 20rem;
+    height: auto;
     box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
 }
 
-.review-card > div {
-    margin-bottom: 1.5rem;
-}
-
 .reviewer-detail {
-    margin: auto 0.75rem;
+    padding-left: 1rem;
 }
 
 .review-rating {
     font-size: 1.5rem;
+    word-spacing: 1.5px;
 }
 
 .reviewer {

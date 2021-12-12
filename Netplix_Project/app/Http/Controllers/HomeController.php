@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $movies = Movie::paginate(10);
 
@@ -18,6 +18,13 @@ class HomeController extends Controller
 
         $genres = Genre::get();
 
-        return view('index', compact('movies', 'latestMovies', 'genres'));
+        $randomMovies = Movie::inRandomOrder()->limit(3)->get();
+
+        // if ($request->ajax()) {
+        //     $view = view('gigs.data', compact('gigs'))->render();
+        //     return response()->json(['html' => $view]);
+        // }
+
+        return view('index', compact('movies', 'latestMovies', 'genres', 'randomMovies'));
     }
 }
