@@ -16,11 +16,11 @@
                             @csrf
                             <div class="mb-4">
                                 <div class="d-flex align-items-center form-input-box px-3 py-3">
-                                    <label for="name" class="form-label">Username</label>
-                                    <input type="text" class="text-light form-input @error('name')is-invalid @enderror"
-                                        name="username" placeholder="Enter your username" value="{{ old('username') }}">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="text-light form-input @error('email')is-invalid @enderror"
+                                        name="email" placeholder="Enter your email" value="{{ old('email') }}">
                                 </div>
-                                @error('username')
+                                @error('email')
                                     <small class="text-danger">
                                         {{ $message }}
                                     </small>

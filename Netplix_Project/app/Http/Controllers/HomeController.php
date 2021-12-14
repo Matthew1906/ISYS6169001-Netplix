@@ -20,11 +20,6 @@ class HomeController extends Controller
 
         $randomMovies = Movie::inRandomOrder()->limit(3)->get();
 
-        // if ($request->ajax()) {
-        //     $view = view('gigs.data', compact('gigs'))->render();
-        //     return response()->json(['html' => $view]);
-        // }
-
         return view('index', compact('movies', 'latestMovies', 'genres', 'randomMovies'));
     }
 }

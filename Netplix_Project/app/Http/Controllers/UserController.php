@@ -15,6 +15,16 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $user = Auth::user();
+        if ($request->url) {
+            $attr = $request->validate([
+                'url' => ['required']
+            ]);
+            $user->image_url = $attr['url'];
+            $user->save();
+            return redirect('/profile')->with('success', 'Profile image has been updated');
+        }
+
         $attr = $request->validate([
             'username' => ['required'],
             'email' => 'required|email',
@@ -22,7 +32,6 @@ class UserController extends Controller
             'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:5', 'max:13']
         ]);
 
-        $user = Auth::user();
         $user->name = $attr['username'];
         $user->email = $attr['email'];
         $user->dob = $attr['dob'];

@@ -5,6 +5,9 @@
     <script src="{{ asset('js/lightslider.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/lightslider.css') }}" />
     <script src="{{ asset('js/movie.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('content')
     <section class='main-class container-fluid'>
@@ -16,14 +19,17 @@
                 <div class='col-lg-8 text-light container'>
                     <div class='show-title d-flex roboto'>
                         <h1 class="w-75">{{ $movie->title }}</h1>
-                        <div class="d-flex w-50">
-                            <a href='#' class='btn btn-danger'>+ Add to Watchlist</a>
-                            <a href="#" class='btn btn-outline-light'><i class="fas fa-share-alt"></i></a>
-                        </div>
+                        @auth
+                            @can('addWatchList', $movie)
+                                <div class="d-flex w-50">
+                                    <button class='btn btn-danger top-addbtn'>+ Add to Watchlist</button>
+                                </div>
+                            @endcan
+                        @endauth
                     </div>
                     <div class='d-flex poppins'>
                         @foreach ($genres as $genre)
-                            <a href='#' class="genre">{{ $genre->name }}</a>
+                            <button href='#' class="genre">{{ $genre->name }}</button>
                         @endforeach
                     </div>
                     <div class='d-flex show-info poppins'>
@@ -50,15 +56,23 @@
         <div class="show-detail text-light" id='cast'>
             <h2 class='section-title mb-5'>Cast</h2>
             <div class="card-group cast-carousel cs-hidden text-light" id="autoWidth2">
-                @foreach ($actors as $actor)
+                @forelse ($actors as $actor)
                     <div class="cast-card card">
                         <img src="{{ $actor->image_url }}" class="cast-image">
-                        <div class="card-body">
+                        <div class="card-body p-3">
                             <h5 class="card-title">{{ $actor->name }}</h5>
                             <p class="card-text">{{ $actor->character_name }}</p>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                <p>There is No Casts</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
             </div>
         </div>
         <div class="show-detail text-light" id='reviews'>
@@ -76,18 +90,29 @@
                             @endif
                             <div class="flex-column reviewer-detail">
                                 <h4>{{ $review->user->name }}</h4>
-                                <p>{{ $review->review_date->diffForHumans() }}</p>
+                                <p>{{ $review->review_date->format('d-M-Y') }}</p>
                             </div>
                         </div>
                         <p class="lead text-muted">{{ $review->body }}</p>
-                        <p class='review-rating fw-bolder'><i class="text-warning fas fa-star yellow"></i>
-                            {{ $review->rating }} / 10 </p>
+                        <div class="d-flex justify-content-between">
+                            <p class='review-rating fw-bolder'><i class="text-warning fas fa-star yellow"></i>
+                                {{ $review->rating }} / 10 </p>
+                            @auth
+                                @can('deleteReview', $review)
+                                    <form action="{{ route('delete-review', $movie->show_id) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger p-2" style="border-radius: 5px">Delete</button>
+                                    </form>
+                                @endcan
+                            @endauth
+                        </div>
                     </div>
                 @empty
                     <div class="row">
                         <div class="col-md-6">
                             <div class="alert alert-danger">
-                                <p>There is no Review</p>
+                                <p>There is No Review</p>
                             </div>
                         </div>
                     </div>
@@ -104,19 +129,35 @@
             <h2 class='section-title mb-5'>More</h2>
             <ul class="movie-carousel card-group list-unstyled cs-hidden text-light" id="autoWidth">
                 @foreach ($movies as $currMovie)
-                    <li class="card movie-card">
-                        <a href="{{ route('show-movie', $currMovie->show_id) }}"><img
-                                src="{{ $currMovie->image_url }}" class="card-img-top" alt="..."></a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $currMovie->title }}</h5>
-                            <div class="d-flex justify-content-between">
-                                <p class="text-muted">{{ $currMovie->release_date->format('Y') }}</p>
-                                <p class="card-info"><i class="fas fa-plus text-muted"></i> <span
-                                        class="text-warning"><i class="fas fa-star text-warning"></i>
-                                        {{ $currMovie->rating }}</span></p>
+                    @if ($currMovie != $movie)
+                        <li class="card movie-card">
+                            <a href="{{ route('show-movie', $currMovie->show_id) }}"><img
+                                    src="{{ $currMovie->image_url }}" class="card-img-top" alt="..."></a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ Str::limit($currMovie->title, 20) }}</h5>
+                                <div class="d-flex justify-content-between">
+                                    <p class="text-muted">{{ $currMovie->release_date->format('Y') }}</p>
+                                    <p class="card-info">
+                                        @auth
+                                            @can('addWatchList', $currMovie)
+                                                <button class="btn p-0 addBtn" id="addWatchButton"
+                                                    value="{{ $currMovie->show_id }}">
+                                                    <i class="fas fa-plus text-muted"></i>
+                                                </button>
+                                            @else
+                                                <button class="btn p-0 addBtn added" id="addWatchButton"
+                                                    value="{{ $currMovie->show_id }}">
+                                                    <i class="fas fa-check text-danger"></i>
+                                                </button>
+                                            @endcan
+                                        @endauth
+                                        <span class="text-warning"><i class="fas fa-star text-warning"></i>
+                                            {{ $currMovie->rating }}</span>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endif
                 @endforeach
             </ul>
         </section>
@@ -156,6 +197,76 @@
                 </form>
                     `;
                 })
+            }
+
+            const addMovies = $('.addBtn');
+            addMovies.each(function() {
+                $(this).on('click', function() {
+                    var movie_id = $(this).val();
+                    console.log(movie_id);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    if ($(this).hasClass('added')) {
+                        $.ajax({
+                            url: "/api/addWatchlist/" + movie_id,
+                            type: "DELETE",
+                            contentType: false,
+                            processData: false,
+                            success: (data) => {
+                                $(this).html('<i class="fas fa-plus text-muted"></i>');
+                                $(this).removeClass('added');
+                                $.notify("Removed from watchlist", "warn");
+                            },
+                            error: (data) => {
+                                console.log(data.responseJSON);
+                            },
+                        });
+                    } else {
+                        $.ajax({
+                            url: "/api/addWatchlist/" + movie_id,
+                            type: "POST",
+                            contentType: false,
+                            processData: false,
+                            success: (data) => {
+                                $(this).html('<i class="fas fa-check text-danger"></i>');
+                                $(this).addClass('added');
+                                $.notify("Added to watchlist", "success");
+                            },
+                            error: (data) => {
+                                console.log(data.responseJSON);
+                            },
+                        });
+                    }
+                })
+            });
+
+            const topButton = document.querySelector('.top-addbtn');
+            if (topButton) {
+                topButton.addEventListener('click', () => {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: "/api/addWatchlist/{{ $movie->show_id }}",
+                        type: "POST",
+                        contentType: false,
+                        processData: false,
+                        success: (data) => {
+                            topButton.remove();
+                            $.notify("Added to watchlist", "success");
+                        },
+                        error: (data) => {
+                            console.log(data.responseJSON);
+                        },
+                    });
+                });
             }
         </script>
     @endsection

@@ -79,6 +79,7 @@
 }
 
 .genre {
+    background-color: transparent;
     text-decoration: none;
     border: solid #c4c4c4 0.1rem;
     border-radius: 20px;
@@ -137,7 +138,7 @@
 
 .cast-card {
     width: 13.5rem;
-    height: 20rem;
+    height: 22rem;
     border-radius: 20px;
     background-color: #900c16;
     border: none;
@@ -171,4 +172,7 @@
 
 .reviewer {
     border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
 }

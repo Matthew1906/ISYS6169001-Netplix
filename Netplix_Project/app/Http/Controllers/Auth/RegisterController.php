@@ -39,6 +39,7 @@ class RegisterController extends Controller
         $attr['name'] = $attr['username'];
         $attr['date_joined'] = Carbon::now();
         $attr['password'] = bcrypt($attr['password']);
+        $attr['id'] = $countUser;
         User::create($attr);
 
         return redirect('/login');

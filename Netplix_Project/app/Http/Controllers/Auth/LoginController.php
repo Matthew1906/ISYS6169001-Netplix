@@ -19,13 +19,13 @@ class LoginController extends Controller
     {
 
         $request->validate([
-            'username' => ['required'],
+            'email' => ['required'],
             'password' => ['required']
         ]);
 
 
-        if (Auth::attempt(['name' => request('username'), 'password' => $request->password])) {
-            return redirect('/');
+        if (Auth::attempt(['email' => request('email'), 'password' => $request->password])) {
+            return redirect('/')->with('success-info', 'Login Successfully');
         }
 
         return redirect('/login')->with('error', 'Invalid Credential');

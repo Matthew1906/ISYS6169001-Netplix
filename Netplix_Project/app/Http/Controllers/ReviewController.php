@@ -31,4 +31,15 @@ class ReviewController extends Controller
 
         return redirect('/movie/' . $movie->show_id)->with('success', 'Review posted');
     }
+
+    public function destroy(Movie $movie)
+    {
+        $this->authorize('deleteReviewMovie', $movie);
+
+        $user = Auth::user();
+
+        $review = Review::where('show_id', $movie->show_id)->where('user_id', $user->user_id)->delete();
+
+        return redirect('/movie/' . $movie->show_id)->with('success', 'Review successfully deleted');
+    }
 }

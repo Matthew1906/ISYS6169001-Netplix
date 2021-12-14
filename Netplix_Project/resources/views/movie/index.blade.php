@@ -5,6 +5,9 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/lightslider.css') }}" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{ asset('js/lightslider.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('content')
     <section class="main-header">
@@ -28,8 +31,18 @@
                                     {{ $randMovie->category->name }} | {{ $randMovie->release_date->format('Y') }}</p>
                                 <h1 class="carousel-title fw-bolder">{{ $randMovie->title }}</h1>
                                 <p class="carousel-text">{{ Str::limit($randMovie->description, 200) }}</p>
-                                <button class="btn btn-danger btn-add-watchlist"><i class="fas fa-plus"></i> Add To
-                                    Watchlists</button>
+                                @auth
+                                    @can('addWatchList', $randMovie)
+                                        <button class="btn btn-danger btn-add-watchlist" value="{{ $randMovie->show_id }}"><i
+                                                class="fas fa-plus"></i> Add
+                                            To
+                                            Watchlists</button>
+                                    @else
+                                        <button class="btn btn-success btn-add-watchlist added"
+                                            value="{{ $randMovie->show_id }}"><i class="fas fa-check"></i> Already
+                                            in Watchlist</button>
+                                    @endcan
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -46,76 +59,20 @@
             <hr class="dropdown-divider mb-3 text-light">
         </div>
         <ul class="movie-carousel card-group list-unstyled cs-hidden text-light" id="autoWidth">
-            <li class="card">
-                <a href=""><img src=" https://picsum.photos/200/300?random=5" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Squid Game</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">2021</p>
-                        <p class="card-info"><i class="fas fa-plus text-muted"></i> <span class="text-warning"><i
-                                    class="fas fa-star text-warning"></i> 8.5</span></p>
+            @foreach ($trendingMovies as $trendMovie)
+                <li class="card">
+                    <a href="{{ route('show-movie', $trendMovie->show_id) }}"><img src="{{ $trendMovie->image_url }}"
+                            class="card-img-top" alt="..."></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ Str::limit($trendMovie->title, 19) }}</h5>
+                        <div class="d-flex justify-content-between">
+                            <p class="text-muted">{{ $trendMovie->release_date->format('Y') }}</p>
+                            <p class="card-info"> <span class="text-warning"><i class="fas fa-star text-warning"></i>
+                                    {{ $trendMovie->rating }}</span></p>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="card">
-                <a href=""><img src=" https://picsum.photos/200/300?random=10" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Money heist</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">2021</p>
-                        <p class="card-info"><i class="fas fa-check text-danger"></i> <span class="text-warning"><i
-                                    class="fas fa-star text-warning"></i> 8.5</span></p>
-                    </div>
-                </div>
-
-            </li>
-            <li class="card">
-                <a href=""><img src=" https://picsum.photos/200/300?random=10" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Money heist</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">2021</p>
-                        <p class="card-info"><i class="fas fa-check text-danger"></i> <span class="text-warning"><i
-                                    class="fas fa-star text-warning"></i> 8.5</span></p>
-                    </div>
-                </div>
-
-            </li>
-            <li class="card">
-                <a href=""><img src=" https://picsum.photos/200/300?random=10" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Money heist</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">2021</p>
-                        <p class="card-info"><i class="fas fa-check text-danger"></i> <span class="text-warning"><i
-                                    class="fas fa-star text-warning"></i> 8.5</span></p>
-                    </div>
-                </div>
-
-            </li>
-            <li class="card">
-                <a href=""><img src=" https://picsum.photos/200/300?random=10" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Money heist</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">2021</p>
-                        <p class="card-info"><i class="fas fa-check text-danger"></i> <span class="text-warning"><i
-                                    class="fas fa-star text-warning"></i> 8.5</span></p>
-                    </div>
-                </div>
-
-            </li>
-            <li class="card">
-                <a href=""><img src=" https://picsum.photos/200/300?random=10" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">Money heist</h5>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-muted">2021</p>
-                        <p class="card-info"><i class="fas fa-check text-danger"></i> <span class="text-warning"><i
-                                    class="fas fa-star text-warning"></i> 8.5</span></p>
-                    </div>
-                </div>
-            </li>
+                </li>
+            @endforeach
         </ul>
         <div class="container-fluid p-3 text-light">
             <div class="row movie-title mb-3">
@@ -124,11 +81,9 @@
                         <i class="fas fa-film fs-3"></i>
                         <span class="fs-3 ms-3 fw-bold">Movies</span>
                     </div>
-                    <form action="">
-                        <input type="text" class="search-movie p-3"
-                            style="background: transparent; outline: none;color : #fff;border: none; background-color: #2D2D2D; width: 20vw; border-radius: 18px;"
-                            placeholder="Search movie...">
-                    </form>
+                    <input type="text" class="search-movie p-3" id="search-input"
+                        style="background: transparent; outline: none;color : #fff;border: none; background-color: #2D2D2D; width: 20vw; border-radius: 18px;"
+                        placeholder="Search movie...">
                 </div>
             </div>
             <hr class="dropdown-divider">
@@ -196,23 +151,9 @@
                             }
                             $('.ajax-load').hide();
                             $("#movie-section-container").append(data.html);
+                            loadAddMovieButton();
                         })
                         .fail(function(jqXHR, ajaxOptions, thrownError) {
-                            alert('server not responding...');
-                        });
-                }
-
-                function loadGenre(genreParam) {
-                    $.ajax({
-                            url: '?genre=' + genreParam,
-                            type: "get",
-                        })
-                        .done(function(data) {
-                            $("#movie-section-container").empty();
-                            $("#movie-section-container").append(data.html);
-                        })
-                        .fail(function(jqXHR, ajaxOptions, thrownError) {
-                            console.log(jqXHR.responseJSON);
                             alert('server not responding...');
                         });
                 }
@@ -222,10 +163,14 @@
                         e.preventDefault();
                         if (button.classList.contains('active-genre')) {
                             button.classList.remove('active-genre');
-                            if (activeButton) { // teken matiin reset semua
+                            if (activeButton && !activeButtonSort && $('#search-input').val() ==
+                                '') { // teken matiin reset semua
                                 $("#movie-section-container").empty();
                                 page = 1;
                                 loadMoreData(page);
+                            } else if (activeButton && activeButtonSort) {
+                                $("#movie-section-container").empty();
+                                loadSort(sortButtons[activeButtonSortIndex].textContent);
                             }
                             activeButton = false;
                         } else {
@@ -243,12 +188,13 @@
                 function loadGenre(genreParam) {
                     if (!activeButtonSort) {
                         $.ajax({
-                                url: '?genre=' + genreParam,
+                                url: '?genre=' + genreParam + '&search=' + $('#search-input').val(),
                                 type: "get",
                             })
                             .done(function(data) {
                                 $("#movie-section-container").empty();
                                 $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
                             })
                             .fail(function(jqXHR, ajaxOptions, thrownError) {
                                 console.log(jqXHR.responseJSON);
@@ -257,12 +203,13 @@
                     } else {
                         $.ajax({
                                 url: '?genre=' + genreParam + '&sort=' +
-                                    sortButtons[activeButtonSortIndex].textContent,
+                                    sortButtons[activeButtonSortIndex].textContent + '&search=' + $('#search-input').val(),
                                 type: "get",
                             })
                             .done(function(data) {
                                 $("#movie-section-container").empty();
                                 $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
                             })
                             .fail(function(jqXHR, ajaxOptions, thrownError) {
                                 console.log(jqXHR.responseJSON);
@@ -274,29 +221,28 @@
                 function loadSort(sortParam) {
                     if (!activeButton) {
                         $.ajax({
-                                url: '?sort=' + sortParam,
+                                url: '?sort=' + sortParam + '&search=' + $('#search-input').val(),
                                 type: "get",
-                                beforeSend: function() {
-                                    console.log('sort doang');
-                                }
                             })
                             .done(function(data) {
                                 $("#movie-section-container").empty();
                                 $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
                             })
                             .fail(function(jqXHR, ajaxOptions, thrownError) {
                                 console.log(jqXHR.responseJSON);
                                 alert('server not responding...');
                             });
                     } else {
-                        ;
                         $.ajax({
-                                url: '?sort=' + sortParam + '&genre=' + genreButtons[activeButtonIndex].textContent,
+                                url: '?sort=' + sortParam + '&genre=' + genreButtons[activeButtonIndex].textContent +
+                                    '&search=' + $('#search-input').val(),
                                 type: "get",
                             })
                             .done(function(data) {
                                 $("#movie-section-container").empty();
                                 $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
                             })
                             .fail(function(jqXHR, ajaxOptions, thrownError) {
                                 console.log(jqXHR.responseJSON);
@@ -310,10 +256,14 @@
                         e.preventDefault();
                         if (sortButton.classList.contains('active-sort')) {
                             sortButton.classList.remove('active-sort');
-                            if (activeButtonSort) { // teken matiin reset semua
+                            if (activeButtonSort && !activeButton && $('#search-input').val() ==
+                                '') { // teken matiin reset semua
                                 $("#movie-section-container").empty();
                                 page = 1;
                                 loadMoreData(page);
+                            } else if (activeButtonSort && activeButton) {
+                                $("#movie-section-container").empty();
+                                loadGenre(genreButtons[activeButtonIndex].textContent)
                             }
                             activeButtonSort = false;
                         } else {
@@ -326,6 +276,168 @@
                             activeButtonSortIndex = index;
                         }
                     })
+                });
+
+                function loadAddMovieButton() {
+                    const addMovies = $('.addBtn');
+                    addMovies.each(function() {
+                        $(this).off('click')
+                        $(this).on('click', function() {
+                            var movie_id = $(this).val();
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+
+                            if ($(this).hasClass('added')) {
+                                $.ajax({
+                                    url: "/api/addWatchlist/" + movie_id,
+                                    type: "DELETE",
+                                    contentType: false,
+                                    processData: false,
+                                    success: (data) => {
+                                        $(this).html('<i class="fas fa-plus text-muted"></i>');
+                                        $(this).removeClass('added');
+                                        $.notify("Removed from watchlist", "warn");
+                                    },
+                                    error: (data) => {
+                                        console.log(data.responseJSON);
+                                    },
+                                });
+                            } else {
+                                $.ajax({
+                                    url: "/api/addWatchlist/" + movie_id,
+                                    type: "POST",
+                                    contentType: false,
+                                    processData: false,
+                                    success: (data) => {
+                                        $(this).html('<i class="fas fa-check text-danger"></i>');
+                                        $(this).addClass('added');
+                                        $.notify("Added to watchlist", "success");
+                                        console.log(data);
+                                    },
+                                    error: (data) => {
+                                        console.log(data.responseJSON);
+                                    },
+                                });
+                            }
+                        })
+                    });
+                }
+
+                loadAddMovieButton();
+
+                const randMovies = $('.btn-add-watchlist');
+                randMovies.each(function() {
+                    $(this).on('click', function() {
+                        var movie_id = $(this).val();
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+
+                        if ($(this).hasClass('added')) {
+                            $.ajax({
+                                url: "/api/addWatchlist/" + movie_id,
+                                type: "DELETE",
+                                contentType: false,
+                                processData: false,
+                                success: (data) => {
+                                    $(this).html(`<i class="fas fa-plus"></i> Add To Watchlists`);
+                                    $(this).removeClass('added');
+                                    $(this).removeClass('btn-success');
+                                    $(this).addClass('btn-danger');
+                                    $.notify("Removed from watchlist", "warn");
+                                },
+                                error: (data) => {
+                                    console.log(data.responseJSON);
+                                },
+                            });
+                        } else {
+                            $.ajax({
+                                url: "/api/addWatchlist/" + movie_id,
+                                type: "POST",
+                                contentType: false,
+                                processData: false,
+                                success: (data) => {
+                                    $(this).html(`<i class="fas fa-check"></i> Already in Watchlist`);
+                                    $(this).addClass('added');
+                                    $(this).removeClass('btn-danger');
+                                    $(this).addClass('btn-success');
+                                    $.notify("Added to watchlist", "success");
+                                },
+                                error: (data) => {
+                                    console.log(data.responseJSON);
+                                },
+                            });
+                        }
+                    })
+                });
+
+                $('#search-input').keyup(function() {
+                    var search = $(this).val();
+                    if (!activeButton && !activeButtonSort) {
+                        $.ajax({
+                                url: '?search=' + search,
+                                type: "get",
+                            })
+                            .done(function(data) {
+                                $("#movie-section-container").empty();
+                                $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
+                            })
+                            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                                console.log(jqXHR.responseJSON);
+                                alert('server not responding...');
+                            });
+                    } else if (activeButton && !activeButtonSort) {
+                        $.ajax({
+                                url: '?search=' + search + '&genre=' + genreButtons[activeButtonIndex].textContent,
+                                type: "get",
+                            })
+                            .done(function(data) {
+                                $("#movie-section-container").empty();
+                                $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
+                            })
+                            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                                console.log(jqXHR.responseJSON);
+                                alert('server not responding...');
+                            });
+                    } else if (!activeButton && activeButtonSort) {
+                        $.ajax({
+                                url: '?search=' + search + '&sort=' +
+                                    sortButtons[activeButtonSortIndex].textContent,
+                                type: "get",
+                            })
+                            .done(function(data) {
+                                $("#movie-section-container").empty();
+                                $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
+                            })
+                            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                                console.log(jqXHR.responseJSON);
+                                alert('server not responding...');
+                            });
+                    } else if (activeButton && activeButtonSort) {
+                        $.ajax({
+                                url: '?search=' + search + '&sort=' +
+                                    sortButtons[activeButtonSortIndex].textContent + '&genre=' + genreButtons[
+                                        activeButtonIndex].textContent,
+                                type: "get",
+                            })
+                            .done(function(data) {
+                                $("#movie-section-container").empty();
+                                $("#movie-section-container").append(data.html);
+                                loadAddMovieButton();
+                            })
+                            .fail(function(jqXHR, ajaxOptions, thrownError) {
+                                console.log(jqXHR.responseJSON);
+                                alert('server not responding...');
+                            });
+                    }
                 });
             </script>
         </div>

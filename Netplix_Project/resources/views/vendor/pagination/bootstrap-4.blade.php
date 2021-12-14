@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav class="d-flex justify-content-between">
+    <nav class="d-flex justify-content-between" id="paginator-container">
         <div>
             <p class="text-sm text-secondary">
                 {!! __('Showing') !!}
