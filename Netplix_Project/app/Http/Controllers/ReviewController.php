@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use App\Models\Review;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,14 +33,11 @@ class ReviewController extends Controller
         return redirect('/movie/' . $movie->show_id)->with('success', 'Review posted');
     }
 
-    public function destroy(Movie $movie)
+    public function destroy(Request $request)
     {
-        $this->authorize('deleteReviewMovie', $movie);
-
-        $user = Auth::user();
-
-        $review = Review::where('show_id', $movie->show_id)->where('user_id', $user->user_id)->delete();
-
-        return redirect('/movie/' . $movie->show_id)->with('success', 'Review successfully deleted');
+        $review = Review::where('show_id', $request->show_id)->where('user_id', $request->user_id)->first();
+        $this->authorize('deleteReview', $review);
+        Review::where('show_id', $request->show_id)->where('user_id', $request->user_id)->delete();
+        return redirect('/movie/' . $request->show_id)->with('success', 'Review successfully deleted');
     }
 }

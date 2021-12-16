@@ -13,10 +13,10 @@
                     class=" fab fa-youtube"></i></a>
         </div>
         <ul class="d-flex justify-content-center list-unstyled terms-list">
-            <li><a href="" target="_blank">Privacy Policy</a></li>
-            <li><a href="" target="_blank">Terms of Service</a></li>
-            <li><a href="" target="_blank">Contact Us</a></li>
-            <li><a href="" target="_blank">About Us</a></li>
+            <li><a href="https://help.netflix.com/legal/privacy" target="_blank">Privacy Policy</a></li>
+            <li><a href="https://help.netflix.com/legal/termsofuse" target="_blank">Terms of Service</a></li>
+            <li><a href="https://help.netflix.com/en/contactus" target="_blank">Contact Us</a></li>
+            <li><a href="https://help.netflix.com/en/" target="_blank">About Us</a></li>
         </ul>
         <p class="footer-copyright">Copyright &copy; 2021 <a href="{{ route('show-home') }}"
                 class="fw-bolder footer-link">Netplix</a> All

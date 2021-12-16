@@ -54,7 +54,7 @@
         <div class="container-fluid py-3">
             <div class="ps-3 text-light">
                 <i class="fas fa-fire fs-3"></i>
-                <span class="fs-3 ms-3 fw-bold">Trending</span>
+                <span class="fs-3 ms-3 fw-bold">Popular</span>
             </div>
             <hr class="dropdown-divider mb-3 text-light">
         </div>

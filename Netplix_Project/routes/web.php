@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'index'])->name('show-profile');
     Route::put('/profile', [UserController::class, 'update'])->name('update-profile');
     Route::post('review/{movie:show_id}', [ReviewController::class, 'store'])->name('store-review');
-    Route::delete('review/{movie:show_id}', [ReviewController::class, 'destroy'])->name('delete-review');
+    Route::delete('review/{show_id}/{user_id}', [ReviewController::class, 'destroy'])->name('delete-review');
     Route::get('/logout', [Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('/watchlist', [WatchListController::class, 'index'])->name('show-watchlist');
     Route::post('/watchlist/{movie:show_id}/{page}', [WatchListController::class, 'action'])->name('action-watchlist');

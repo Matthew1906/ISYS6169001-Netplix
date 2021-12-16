@@ -1,4 +1,4 @@
-@extends('layouts.app',['title' => 'Movie Show'])
+@extends('layouts.app',['title' => $movie->title ])
 @section('library')
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -99,7 +99,8 @@
                                 {{ $review->rating }} / 10 </p>
                             @auth
                                 @can('deleteReview', $review)
-                                    <form action="{{ route('delete-review', $movie->show_id) }}" method="POST">
+                                    <form action="{{ route('delete-review', [$review->show_id, $review->user_id]) }}"
+                                        method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger p-2" style="border-radius: 5px">Delete</button>
