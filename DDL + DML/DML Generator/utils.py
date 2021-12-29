@@ -31,5 +31,8 @@ def get_genres(unflattened:list):
 def get_actors(unflattened:list):
     return {actor['name']:{
         'dob':actor['dob'], 
-        'image_url':actor['image_url']
+        'image_url':actor['image_url'],
+        'gender': actor['gender'],
+        'pob': actor['pob'],
+        'popularity': actor['popularity']
     } for actors in unflattened for actor in actors}

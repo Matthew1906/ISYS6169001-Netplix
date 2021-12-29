@@ -8,6 +8,12 @@ PARAMS={
     'api_key' : API_KEY,
     'language' : 'en-US',
 }
+GENDER = {
+    0: 'Unknown',
+    1: 'Female',
+    2: 'Male',
+    3: 'Other',
+}
 
 def process_genre(id:int):
     tv_details = requests.get(url=SHOW_URL+str(id), params=PARAMS).json()
@@ -16,14 +22,26 @@ def process_genre(id:int):
 def get_cast_dob(id:int):
     return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['birthday']
 
+def get_cast_gender(id:int):
+    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['gender']
+
+def get_cast_pob(id:int):
+    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['place_of_birth']
+
+def get_cast_popularity(id:int):
+    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['popularity']
+
 def process_cast(id:int):
     casts = requests.get(url=SHOW_URL+str(id)+'/credits', params=PARAMS).json()['cast']
     return [{
         'name':cast['name'],
         'character':cast['character'],
         'image_url': 'https://image.tmdb.org/t/p/w500' + cast['profile_path'],
-        'dob': get_cast_dob(cast['id'])
-    }for cast in list(filter(lambda x:x['profile_path']!=None, casts))[:3]]
+        'dob': get_cast_dob(cast['id']),
+        'gender': GENDER[get_cast_gender(cast['id'])],
+        'pob': get_cast_pob(cast['id']),
+        'popularity': get_cast_popularity(cast['id'])
+    }for cast in list(filter(lambda x:x['profile_path']!=None, casts))[:5]]
     
 def process_director(id:int):
     directors = requests.get(url=SHOW_URL+str(id), params=PARAMS).json().get('created_by')

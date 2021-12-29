@@ -1,0 +1,12 @@
+INSERT INTO User VALUES
+	('USR000', 'admin', 'admin@admin.com', 'admin', CAST('1990-10-10' AS DATE), CAST('2020-12-10' AS DATE), 08970657141)
+	('USR001', 'Randy Berry', 'courtney13@yahoo.com', '+zuQu@8s2A', CAST('1948-11-27' AS DATE), CAST('2021-02-05' AS DATE), '08469027499'),
+	('USR002', 'Erica Wyatt', 'jennifer11@gmail.com', '!3AmY9yprB', CAST('1917-02-07' AS DATE), CAST('2021-11-08' AS DATE), '08742021252'),
+	('USR003', 'Gregory Martin', 'patricia53@spencer.info', '#85MHpnS0x', CAST('1927-06-14' AS DATE), CAST('2021-12-11' AS DATE), '086337197242'),
+	('USR004', 'Steven Diaz', 'lindarios@robinson.com', 'j(3jPHH@+g', CAST('1944-01-10' AS DATE), CAST('2021-07-07' AS DATE), '0877866615'),
+	('USR005', 'Daniel Stone', 'richardwallace@hotmail.com', 'dfwD1tZw+A', CAST('1966-09-04' AS DATE), CAST('2021-03-23' AS DATE), '08185116506'),
+	('USR006', 'Kathleen Hill', 'zbartlett@hotmail.com', 'l%WY0Lq_%B', CAST('1967-01-16' AS DATE), CAST('2021-09-17' AS DATE), '0821753446'),
+	('USR007', 'Darryl Lee', 'patricia35@arellano-guerrero.com', 'EEZHySFg#6', CAST('1971-02-25' AS DATE), CAST('2021-09-20' AS DATE), '088952355285'),
+	('USR008', 'Michael Walker', 'andersonjennifer@gmail.com', '&9F)NOTo!a', CAST('1909-10-09' AS DATE), CAST('2021-02-22' AS DATE), '08194876377'),
+	('USR009', 'Rachel Zimmerman', 'patrick67@tyler-ramsey.com', 'JJZ06Eie(Y', CAST('1961-12-31' AS DATE), CAST('2021-02-12' AS DATE), '0845514806'),
+	('USR010', 'Erika Martin', 'kim18@gmail.com', 'w_tg5qelmK', CAST('1961-10-23' AS DATE), CAST('2021-06-28' AS DATE), '084627892550'),
