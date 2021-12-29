@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actor;
 use App\Models\Cast;
+use App\Models\Category;
 use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -158,5 +161,111 @@ class MovieController extends Controller
         $movies = Movie::get();
 
         return view('movie.show', compact('movie', 'actors', 'genres', 'reviews', 'movies'));
+    }
+
+    public function create()
+    {
+        $this->authorize('addMovie');
+        $movie = new Movie();
+        $categories = Category::get();
+        $genres = Genre::get();
+        $actors = Actor::get();
+        return view('movie.create', compact('movie', 'categories', 'genres', 'actors'));
+    }
+
+    public function store(Request $request)
+    {
+        $this->authorize('addMovie');
+
+        $attr = $request->validate([
+            'title' => 'required|min:2|max:50',
+            'description' => 'required|min:8',
+            'category' => 'required',
+            'genres' => 'array|required',
+            'actors' => 'array|required',
+            'characters' => 'array|required',
+            'director' => 'required|min:3',
+            'release_date' => 'required',
+            'image_url' => 'required',
+            'bg_url' => 'required'
+        ]);
+
+        $attr['category_id'] = $attr['category'];
+        $countMovie = Movie::count() + 1;
+        $attr['show_id'] = 'SHW';
+
+        if ($countMovie < 10) {
+            $attr['show_id'] .= (string)'00';
+        } else if ($countMovie < 100) {
+            $attr['show_id'] .= (string)'0';
+        }
+        $attr['show_id'] .= $countMovie;
+
+        $characters = $request->characters;
+        $actors = $request->actors;
+
+        $movie = Movie::create($attr);
+
+        // $movie->actors()->attach(request('actors'), ['character_name' => $characters]);
+        for ($i = 0; $i < count($characters); $i++) {
+            Cast::create(['character_name' => $characters[$i], 'show_id' => $attr['show_id'], 'actor_id' => $actors[$i]]);
+        }
+
+        $movie->genres()->attach(request('genres'));
+        return redirect('/')->with('success-info', 'Add Movie Successfully');
+    }
+
+    public function edit(Movie $movie)
+    {
+        $this->authorize('editMovie');
+
+        $categories = Category::get();
+        $genres = Genre::get();
+        $actors = Actor::get();
+
+        return view('movie.edit', compact('movie', 'categories', 'genres', 'actors'));
+    }
+
+    public function update(Request $request, Movie $movie)
+    {
+        $this->authorize('editMovie');
+
+        $attr = $request->validate([
+            'title' => 'required|min:2|max:50',
+            'description' => 'required|min:8',
+            'category' => 'required',
+            'genres' => 'array|required',
+            'actors' => 'array|required',
+            'characters' => 'array|required',
+            'director' => 'required|min:3',
+            'release_date' => 'required',
+            'image_url' => 'required',
+            'bg_url' => 'required'
+        ]);
+
+        $attr['category_id'] = $attr['category'];
+        $characters = $request->characters;
+        $actors = $request->actors;
+        $movie->update($attr);
+
+        Cast::where('show_id', $movie->show_id)->delete();
+
+        for ($i = 0; $i < count($request->characters); $i++) {
+            Cast::create(['character_name' => $characters[$i], 'show_id' => $movie->show_id, 'actor_id' => $actors[$i]]);
+        }
+        $movie->genres()->sync(request('genres'));
+
+        return redirect('/')->with('success-info', 'Update Movie Successfully');
+    }
+
+    public function destroy(Movie $movie)
+    {
+        $this->authorize('editMovie');
+
+        Cast::where('show_id', $movie->show_id)->delete();
+        Review::where('show_id', $movie->show_id)->delete();
+        $movie->genres()->detach();
+        $movie->delete();
+        return redirect('/')->with('success-info', 'Delete Movie Successfully');
     }
 }

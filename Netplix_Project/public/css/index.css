@@ -123,3 +123,11 @@
 .active-sort {
     background-color: #e50914;
 }
+
+#search-input {
+    width: 20rem;
+    border: none;
+    outline: none;
+    background-color: #2d2d2d;
+    border-radius: 10px;
+}

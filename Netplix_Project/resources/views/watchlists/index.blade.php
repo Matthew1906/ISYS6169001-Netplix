@@ -9,8 +9,8 @@
 @section('content')
     <div class="watchlist">
         <div class="title-section cust-container cust-row">
-            <i class="fa fa-bookmark bookmark-icon text--red"></i>
-            <h1 class="cust-row">My<span class="text--red">Watchlist</span></h1>
+            <i class="fa fa-bookmark bookmark-icon textRed"></i>
+            <h1 class="cust-row">My<span class="textRed">Watchlist</span></h1>
         </div>
 
         <div class="search-section cust-container cust-col">

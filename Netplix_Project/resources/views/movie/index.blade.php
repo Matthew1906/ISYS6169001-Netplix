@@ -32,16 +32,18 @@
                                 <h1 class="carousel-title fw-bolder">{{ $randMovie->title }}</h1>
                                 <p class="carousel-text">{{ Str::limit($randMovie->description, 200) }}</p>
                                 @auth
-                                    @can('addWatchList', $randMovie)
-                                        <button class="btn btn-danger btn-add-watchlist" value="{{ $randMovie->show_id }}"><i
-                                                class="fas fa-plus"></i> Add
-                                            To
-                                            Watchlists</button>
-                                    @else
-                                        <button class="btn btn-success btn-add-watchlist added"
-                                            value="{{ $randMovie->show_id }}"><i class="fas fa-check"></i> Already
-                                            in Watchlist</button>
-                                    @endcan
+                                    @if (!auth()->user()->isAdmin())
+                                        @can('addWatchList', $randMovie)
+                                            <button class="btn btn-danger btn-add-watchlist" value="{{ $randMovie->show_id }}"><i
+                                                    class="fas fa-plus"></i> Add
+                                                To
+                                                Watchlists</button>
+                                        @else
+                                            <button class="btn btn-success btn-add-watchlist added"
+                                                value="{{ $randMovie->show_id }}"><i class="fas fa-check"></i> Already
+                                                in Watchlist</button>
+                                        @endcan
+                                    @endif
                                 @endauth
                             </div>
                         </div>
@@ -51,13 +53,13 @@
         </div>
     </section>
     <section class="main-body">
-        <div class="container-fluid py-3">
+        <div class="container-fluid py-3 d-flex justify-content-between">
             <div class="ps-3 text-light">
                 <i class="fas fa-fire fs-3"></i>
                 <span class="fs-3 ms-3 fw-bold">Popular</span>
             </div>
-            <hr class="dropdown-divider mb-3 text-light">
         </div>
+        <hr class="dropdown-divider mb-3 text-light">
         <ul class="movie-carousel card-group list-unstyled cs-hidden text-light" id="autoWidth">
             @foreach ($trendingMovies as $trendMovie)
                 <li class="card">
@@ -81,9 +83,7 @@
                         <i class="fas fa-film fs-3"></i>
                         <span class="fs-3 ms-3 fw-bold">Movies</span>
                     </div>
-                    <input type="text" class="search-movie p-3" id="search-input"
-                        style="background: transparent; outline: none;color : #fff;border: none; background-color: #2D2D2D; width: 20vw; border-radius: 18px;"
-                        placeholder="Search movie...">
+                    <input type="text" class="search-movie p-3 text-light" id="search-input" placeholder="Search movie...">
                 </div>
             </div>
             <hr class="dropdown-divider">
@@ -103,8 +103,15 @@
                     <button class="btn sort btn-sort">Rating</button>
                 </div>
             </div>
+
             <div class="container-fluid movie-body" id="movie-section">
-                <div class="row mt-5 mb-5 gy-3 movie-content d-flex justify-content-center" id='movie-section-container'>
+                @can('addMovie')
+                    <div class="d-flex justify-content-end me-4">
+                        <a href="{{ route('create-movie') }}" type="button" class="btn btn-danger mx-3"><i
+                                class="fas fa-plus"></i> Add Movie</a>
+                    </div>
+                @endcan
+                <div class="row mt-5 mb-5 gy-3 movie-content justify-content-center" id='movie-section-container'>
                     @include('movie.data')
                 </div>
             </div>
@@ -332,6 +339,7 @@
                 randMovies.each(function() {
                     $(this).on('click', function() {
                         var movie_id = $(this).val();
+                        console.log(movie_id);
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

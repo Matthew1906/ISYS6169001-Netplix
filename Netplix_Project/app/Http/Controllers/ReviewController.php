@@ -29,7 +29,6 @@ class ReviewController extends Controller
             'review_date' => Carbon::now()
         ]);
 
-
         return redirect('/movie/' . $movie->show_id)->with('success', 'Review posted');
     }
 

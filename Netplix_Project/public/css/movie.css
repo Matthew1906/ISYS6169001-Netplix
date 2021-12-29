@@ -60,16 +60,16 @@
     font-weight: bold;
 }
 
-.btn-danger {
-    font-weight: bold;
-    border-radius: 20px;
-    padding: 1rem 1.5rem;
-    background-color: #e50914;
-}
-
 .alert-danger {
     background-color: #e50914;
     color: #fff;
+}
+
+.btn-danger {
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    background-color: #e50914;
 }
 
 .show-title .btn-outline-light {

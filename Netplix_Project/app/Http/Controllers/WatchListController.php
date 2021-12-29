@@ -60,7 +60,6 @@ class WatchListController extends Controller
     public function store(Movie $movie)
     {
         $this->authorize('addWatchList', $movie);
-
         $user = Auth::user();
         Watchlist::create([
             'show_id' => $movie->show_id,

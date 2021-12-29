@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1F1F1F">
     <div class="container">
-        <a class="navbar-brand logo fs-3" href="{{ route('show-home') }}">
+        <a class="navbar-brand logo fs-2" href="{{ route('show-home') }}">
             Netplix
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -16,11 +16,16 @@
                     <a class="nav-link text-light" aria-current="page"
                         href="{{ request()->is('/') ? '' : '/' }}#movie-section">Movies</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" aria-current="page" href="{{ route('show-actor') }}">Actors</a>
+                </li>
                 @auth
-                    <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="{{ route('show-watchlist') }}">My
-                            Watchlist</a>
-                    </li>
+                    @if (!auth()->user()->isAdmin())
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="{{ route('show-watchlist') }}">My
+                                Watchlist</a>
+                        </li>
+                    @endif
                     <li class="nav-item dropdown fs-3 d-flex align-items-center mx-3">
                         @if (Auth::user()->image_url)
                             <span class="nav-link p-0 d-flex" href="#" id="navbarDropdownMenuLink" role="button"
@@ -33,7 +38,6 @@
                                 aria-expanded="false">
                                 <i class="fas fa-user-circle"></i>
                             </span>
-
                         @endif
                         <ul class="dropdown-menu dropdown-menu-end p-3">
                             <li><a class="dropdown-item" href=" {{ route('show-profile') }} ">Profile</a>

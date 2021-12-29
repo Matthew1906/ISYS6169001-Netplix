@@ -24,9 +24,7 @@ class RegisterController extends Controller
             'confirm-password' => ['required', 'same:password']
         ]);
 
-        $latestUser = DB::table('users')->latest('date_joined')->first();
-        $lastUser = substr($latestUser->user_id, -3);
-        $countUser = (int)$lastUser + 1;
+        $countUser = User::count();
 
         $attr['user_id'] = 'USR';
         if ($countUser < 10) {
@@ -42,6 +40,6 @@ class RegisterController extends Controller
         $attr['id'] = $countUser;
         User::create($attr);
 
-        return redirect('/login');
+        return redirect('/login')->with('success-info', 'Account has been created');
     }
 }

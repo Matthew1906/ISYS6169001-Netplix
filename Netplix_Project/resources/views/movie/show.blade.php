@@ -20,11 +20,27 @@
                     <div class='show-title d-flex roboto'>
                         <h1 class="w-75">{{ $movie->title }}</h1>
                         @auth
-                            @can('addWatchList', $movie)
-                                <div class="d-flex w-50">
-                                    <button class='btn btn-danger top-addbtn'>+ Add to Watchlist</button>
-                                </div>
-                            @endcan
+                            @if (!auth()->user()->isAdmin())
+                                @can('addWatchList', $movie)
+                                    <div class="d-flex w-50">
+                                        <button class='btn btn-danger top-addbtn'>+ Add to Watchlist</button>
+                                    </div>
+                                @endcan
+                            @else
+                                @can('editMovie')
+                                    <div class="d-flex me-2">
+                                        <a href="{{ route('edit-movie', $movie->show_id) }}" class="btn p-2 fs-3 text-light">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                        <form action="{{ route('delete-movie', $movie->show_id) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn p-2 fs-3 text-light"><i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endcan
+                            @endif
                         @endauth
                     </div>
                     <div class='d-flex poppins'>

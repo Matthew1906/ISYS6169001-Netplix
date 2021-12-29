@@ -14,10 +14,26 @@ class Movie extends Model
     protected $dates = [
         'release_date'
     ];
+    protected $primaryKey = 'show_id';
+    public $incrementing = false;
+
+    public $timestamps = false;
+
+    protected $fillable = ['show_id', 'category_id', 'title', 'description', 'director', 'release_date', 'image_url', 'bg_url'];
 
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'category_id');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'showgenre', 'show_id', 'genre_id', 'show_id', 'genre_id');
+    }
+
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class, 'cast', 'show_id', 'actor_id', 'show_id', 'actor_id')->withPivot('actor_id', 'character_name');
     }
 
     public function getRatingAttribute()
@@ -31,7 +47,7 @@ class Movie extends Model
         foreach ($reviews as $review) {
             $total += $review->rating;
         }
-        return $total / $count;
+        return round($total / $count, 2);
     }
 
     public function getCountAttribute()

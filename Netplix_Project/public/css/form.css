@@ -1,0 +1,93 @@
+body {
+    background-color: #121219 !important;
+}
+
+p {
+    margin: 0;
+}
+
+input,
+textarea,
+select,
+.select2 {
+    background-color: #1f1f1f !important;
+    border: none !important;
+    color: #ffff !important;
+}
+
+.select2-container--default {
+    height: max-content !important;
+}
+
+.select2-selection {
+    height: max-content !important;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: #1f1f1f !important;
+    border: none !important;
+    margin: 0.3rem 0;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: #1f1f1f !important;
+    border: none !important;
+    margin: 0.3rem 0;
+}
+
+.select2-search__field {
+    background-color: #1f1f1f !important;
+    color: #fff;
+}
+
+.select2-container--default
+    .select2-selection--multiple
+    .select2-selection__choice {
+    background-color: #e50914 !important;
+    border: none !important;
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__choice {
+    background-color: #e50914 !important;
+    border: none !important;
+}
+
+.select2-selection__rendered {
+    color: #fff !important;
+}
+
+label {
+    color: #ffff !important;
+}
+
+.select2-selection__choice__remove {
+    height: 100%;
+}
+
+.actor-dropdown {
+    height: 50px;
+}
+
+.image-dropdown {
+    margin-right: 1rem;
+    height: 100%;
+    object-fit: contain;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.card-body {
+    background-color: #121219 !important;
+}
+.card {
+    background-color: transparent;
+}
+
+.form-title {
+    color: #fff;
+    font-family: "Haettenschweiler";
+}
