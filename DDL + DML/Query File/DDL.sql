@@ -3,7 +3,7 @@ GO
 
 USE Netplix
 GO
-DROP DATABASE Netplix
+
 CREATE TABLE Actor(
 	[actor_id] CHAR(6) NOT NULL,
 	[name] VARCHAR(50) NOT NULL,
