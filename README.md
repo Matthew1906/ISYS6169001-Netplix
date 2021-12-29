@@ -17,11 +17,12 @@ Our website also enables the user to add reviews and give rating to the shows th
 
 | Content | Location | Details |
 |---------|----------|---------|
-| Conceptual ERD | ERD/Conceptual | created using creately, shows the conceptual model of the database |
-| Logical ERD | ERD/Logical | created using visual paradigm, shows the logical model of the database|
-| DML Generator | DDL + DML/DML Generator | created using faker and request module in Python, extracted dirty data from [The Movie Database API](https://developers.themoviedb.org/3) |
-| Data Definition Language (DDL) | DDL + DML /Query File/DDL.sql| make the database and create tables |
-| Data Manipulation Language (DML) | DDL + DML /Query File/DML.sql | create insert statements with cleaned data |
-| View Query | DDL + DML /Query File/View.sql | create views using basic DML syntax, Aggregating functions, and Subqueries |
+| Conceptual ERD | ERD/Conceptual | Conceptual model of the database, created using [Creately](https://creately.com/)|
+| Logical ERD | ERD/Logical | Logical model of the database, created using [Visual Paradigm](https://www.visual-paradigm.com/)|
+| DML Generator | DDL + DML/DML Generator | Data scraper/generator, created using [Faker](https://faker.readthedocs.io) and [Request](https://docs.python-requests.org) module in [Python](https://www.python.org/) which extracts dirty data from [The Movie Database API](https://developers.themoviedb.org/3) |
+| Data Definition Language (DDL) | DDL + DML /Query File/DDL.sql| Database creation and Tables using [Transact-SQL](https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15) |
+| Data Manipulation Language (DML) | DDL + DML /Query File/DML.sql | Insert statements with cleaned data using [Transact-SQL](https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15)|
+| View Query | DDL + DML /Query File/View.sql | Views created using basic DML syntax, Aggregating functions, and Subqueries with [Transact-SQL](https://docs.microsoft.com/en-us/sql/t-sql/language-reference?view=sql-server-ver15)|
+| Application | Netplix_Project | Working application with [Laravel](https://laravel.com/) as the Backend Framework |
 
 
