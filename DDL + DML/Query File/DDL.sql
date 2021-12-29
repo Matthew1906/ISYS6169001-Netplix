@@ -7,13 +7,12 @@ GO
 CREATE TABLE Actor(
 	[actor_id] CHAR(6) NOT NULL,
 	[name] VARCHAR(50) NOT NULL,
-	[image_url] VARCHAR(255) NOT NULL,
-	[gender] VARCHAR(50) NOT NULL,
 	[dob] DATE NOT NULL,
+	[image_url] VARCHAR(255) NOT NULL,
 	[place_of_birth] VARCHAR(255) NOT NULL,
-	[biography] VARCHAR(1000) NOT NULL,
-	[popularity] FLOAT NOT NULL
-
+	[gender] VARCHAR(50) NOT NULL,
+	[popularity] FLOAT NOT NULL,
+	[biography] VARCHAR(5000) NOT NULL,
 	CONSTRAINT PK_actor PRIMARY KEY([actor_id]),
 	CONSTRAINT check_actor_id CHECK([actor_id] LIKE 'ACT[0-9][0-9][0-9]')
 )
