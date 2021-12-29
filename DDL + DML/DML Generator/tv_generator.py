@@ -19,17 +19,8 @@ def process_genre(id:int):
     tv_details = requests.get(url=SHOW_URL+str(id), params=PARAMS).json()
     return [detail['name'] for detail in tv_details['genres']]
 
-def get_cast_dob(id:int):
-    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['birthday']
-
-def get_cast_gender(id:int):
-    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['gender']
-
-def get_cast_pob(id:int):
-    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['place_of_birth']
-
-def get_cast_popularity(id:int):
-    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()['popularity']
+def get_cast_info(id:int, purpose:str):
+    return requests.get(url=ACTOR_URL+str(id),params=PARAMS).json()[purpose]
 
 def process_cast(id:int):
     casts = requests.get(url=SHOW_URL+str(id)+'/credits', params=PARAMS).json()['cast']
@@ -37,10 +28,11 @@ def process_cast(id:int):
         'name':cast['name'],
         'character':cast['character'],
         'image_url': 'https://image.tmdb.org/t/p/w500' + cast['profile_path'],
-        'dob': get_cast_dob(cast['id']),
-        'gender': GENDER[get_cast_gender(cast['id'])],
-        'pob': get_cast_pob(cast['id']),
-        'popularity': get_cast_popularity(cast['id'])
+        'dob': get_cast_info(cast['id'], 'birthday'),
+        'gender': GENDER[get_cast_info(cast['id'], 'gender')],
+        'pob': get_cast_info(cast['id'], 'place_of_birth'),
+        'popularity': get_cast_info(cast['id'], 'popularity'),
+        'bio': get_cast_info(cast['id'],'biography')
     }for cast in list(filter(lambda x:x['profile_path']!=None, casts))[:5]]
     
 def process_director(id:int):

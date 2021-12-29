@@ -34,5 +34,6 @@ def get_actors(unflattened:list):
         'image_url':actor['image_url'],
         'gender': actor['gender'],
         'pob': actor['pob'],
-        'popularity': actor['popularity']
+        'popularity': actor['popularity'],
+        'bio': actor['bio']
     } for actors in unflattened for actor in actors}

@@ -40,7 +40,7 @@ with open('actors.txt', 'w', encoding='utf-8') as actor_file:
     actor_file.write('INSERT INTO Actor VALUES\n')
     for idx, key in enumerate(actors, 1):
         id_dict['actor'][key] = generate_id(idx, 'actor')
-        actor_file.write(f"\t('{generate_id(idx, 'actor')}', '{format_text(key)}', CAST('{actors[key]['dob']}' AS DATE), '{actors[key]['image_url']}'), '{actors[key]['pob']}', '{actors[key]['gender']}', '{actors[key]['popularity']}'\n")
+        actor_file.write(f"\t('{generate_id(idx, 'actor')}', '{format_text(key)}', CAST('{actors[key]['dob']}' AS DATE), '{actors[key]['image_url']}'), '{actors[key]['pob']}', '{actors[key]['gender']}', '{actors[key]['popularity']}', '{format_description(actors[key]['bio'])}')\n")
 
 # Cast
 with open('cast.txt', 'w', encoding='utf-8') as cast_file:
