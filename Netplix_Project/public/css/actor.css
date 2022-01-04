@@ -38,20 +38,9 @@ body {
     border-radius: 10px;
 }
 
-.action-button {
-    border-radius: 50%;
-    margin: 0 1.2rem 0.5rem 0;
-    width: 3rem;
-    height: 3rem;
-    padding: 1rem;
-}
-
-.overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: 0.5s ease;
-}
-
-.overlay:hover {
-    opacity: 1;
+.card-title,
+.card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

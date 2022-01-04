@@ -67,6 +67,7 @@ Route::prefix('/actor')->middleware([AuthorizeAdministrator::class])->group(func
     Route::post('/create', [ActorController::class, 'store'])->name('store-actor');
     Route::get('/edit/{actor:actor_id}', [ActorController::class, 'edit'])->name('edit-actor');
     Route::put('/edit/{actor:actor_id}', [ActorController::class, 'update'])->name('update-actor');
+    Route::get("/{actor:actor_id}", [ActorController::class, 'show'])->name('show-actor-detail')->withoutMiddleware([AuthorizeAdministrator::class]);
     Route::delete('/{actor:actor_id}', [ActorController::class, 'destroy'])->name('delete-actor');
 });
 

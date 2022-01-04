@@ -1,4 +1,4 @@
-@foreach ($movies as $movie)
+@forelse ($movies as $movie)
     <div class="col-xl-2 col-5 me-5 position-relative">
         <a href="{{ route('show-movie', $movie->show_id) }}"><img src="{{ $movie->image_url }}"
                 class="movie-image" alt="..."></a>
@@ -25,4 +25,12 @@
             </p>
         </div>
     </div>
-@endforeach
+@empty
+    <div class="row">
+        <div class="col-md-4">
+            <div class="alert alert-info">
+                <p>No Match found</p>
+            </div>
+        </div>
+    </div>
+@endforelse

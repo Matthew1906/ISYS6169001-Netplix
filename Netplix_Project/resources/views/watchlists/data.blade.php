@@ -1,4 +1,4 @@
-@foreach ($watchlists as $watchlist)
+@forelse ($watchlists as $watchlist)
     <div class="watchlist-card cust-row">
         <a href="{{ route('show-movie', $watchlist->show_id) }}" class="watchlist-card__poster row-item"
             style="background-image : url('{{ $watchlist->image_url }}');background-size: contain;background-repeat: no-repeat;background-position: left;min-height: 150px;">
@@ -55,4 +55,12 @@
             </div>
         </div>
     </div>
-@endforeach
+@empty
+    <div class="row">
+        <div class="col-md-3">
+            <div class="alert alert-info">
+                <p>No Match found</p>
+            </div>
+        </div>
+    </div>
+@endforelse

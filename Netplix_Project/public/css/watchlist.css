@@ -225,3 +225,7 @@ h4 {
     background-color: #e50914;
     border-color: #e50914;
 }
+
+.alert-danger {
+    background-color: #e50914;
+}

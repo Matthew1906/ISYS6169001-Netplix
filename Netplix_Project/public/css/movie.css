@@ -138,16 +138,22 @@
 
 .cast-card {
     width: 13.5rem;
-    height: 22rem;
+    height: 23rem;
     border-radius: 20px;
     background-color: #900c16;
-    border: none;
 }
 
 .cast-image {
     height: 15.5rem;
     border-radius: 20px 20px 0 0;
     object-fit: cover;
+}
+
+.card-title,
+.card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Reviews */

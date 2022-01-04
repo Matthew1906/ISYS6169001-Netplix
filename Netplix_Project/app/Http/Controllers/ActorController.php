@@ -9,9 +9,14 @@ class ActorController extends Controller
 {
     public function index(Request $request)
     {
+        $actors = Actor::paginate(10);
+        $pages = Actor::count() / 10;
 
         if ($request->ajax()) {
-            if ($request->search == '') {
+            if ($request->page) {
+                $view = view('actor.data', compact('actors'))->render();
+                return response()->json(['html' => $view]);
+            } else if ($request->search == '') {
                 $actors = Actor::get();
                 $view = view('actor.data', compact('actors'))->render();
                 return response()->json(['html' => $view]);
@@ -22,8 +27,12 @@ class ActorController extends Controller
             }
         }
 
-        $actors = Actor::paginate(10);
-        return view('actor.index', compact('actors'));
+        return view('actor.index', compact('actors', 'pages'));
+    }
+
+    public function show(Actor $actor)
+    {
+        return view('actor.show', compact('actor'));
     }
 
     public function create()
@@ -40,11 +49,20 @@ class ActorController extends Controller
 
         $attr = $request->validate([
             'name' => 'required|min:3',
-            'image_url' => 'required|min:5'
+            'image_url' => 'required|min:5',
+            'gender' => 'required',
+            'biography' => 'min:10',
+            'dob' => 'required',
+            'place_of_birth' => 'required',
+            'popularity' => 'required|numeric'
         ]);
 
         $attr['actor_id'] = 'ACT';
-        $countActor = Actor::count() + 1;
+
+        $latestActor = Actor::latest('actor_id')->first();
+        $countActor = (int)substr($latestActor->actor_id, -3);
+        $countActor += 1;
+
         if ($countActor < 10) {
             $attr['actor_id'] .= (string)'00';
         } else if ($countActor < 100) {
@@ -69,10 +87,15 @@ class ActorController extends Controller
         $this->authorize('addActor');
         $attr = $request->validate([
             'name' => 'required|min:3',
-            'image_url' => 'required|min:5'
+            'image_url' => 'required|min:5',
+            'gender' => 'required',
+            'biography' => 'min:10',
+            'dob' => 'required',
+            'place_of_birth' => 'required',
+            'popularity' => 'required|numeric'
         ]);
         $actor->update($attr);
-        return redirect('/actor')->with('success-info', 'Update Actor Successfully');
+        return redirect('/actor/' . $actor->actor_id)->with('success-info', 'Update Actor Successfully');
     }
 
     public function destroy(Actor $actor)

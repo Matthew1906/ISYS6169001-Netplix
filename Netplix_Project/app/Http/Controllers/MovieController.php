@@ -17,7 +17,6 @@ class MovieController extends Controller
 
     public function index(Request $request)
     {
-
         $movies = Movie::paginate(5);
 
         $trendingMovies = Movie::get();
@@ -191,7 +190,10 @@ class MovieController extends Controller
         ]);
 
         $attr['category_id'] = $attr['category'];
-        $countMovie = Movie::count() + 1;
+
+        $latestMovie = Movie::latest('show_id')->first();
+        $countMovie = (int)substr($latestMovie->show_id, -3);
+        $countMovie += 1;
         $attr['show_id'] = 'SHW';
 
         if ($countMovie < 10) {

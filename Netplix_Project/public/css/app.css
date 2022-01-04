@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+.main-app-section {
+    min-height: 80vh;
+}
+
 .navbar-brand,
 .footer-brand {
     font-family: "Haettenschweiler";

@@ -1,13 +1,9 @@
 @extends('layouts.app',['title' => $movie->title ])
 @section('library')
     <link rel="stylesheet" href="{{ asset('css/movie.css') }}">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{ asset('js/lightslider.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/lightslider.css') }}" />
     <script src="{{ asset('js/movie.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
-        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('content')
     <section class='main-class container-fluid'>
@@ -74,7 +70,9 @@
             <div class="card-group cast-carousel cs-hidden text-light" id="autoWidth2">
                 @forelse ($actors as $actor)
                     <div class="cast-card card">
-                        <img src="{{ $actor->image_url }}" class="cast-image">
+                        <a href="{{ route('show-actor-detail', $actor->actor_id) }}">
+                            <img src="{{ $actor->image_url }}" class="cast-image w-100">
+                        </a>
                         <div class="card-body p-3">
                             <h5 class="card-title">{{ $actor->name }}</h5>
                             <p class="card-text">{{ $actor->character_name }}</p>

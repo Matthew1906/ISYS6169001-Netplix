@@ -1,10 +1,6 @@
 @extends('layouts.app',['title' => 'Wachlist'])
 @section('library')
     <link rel="stylesheet" href="{{ asset('css/watchlist.css') }}">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
-        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('content')
     <div class="watchlist">

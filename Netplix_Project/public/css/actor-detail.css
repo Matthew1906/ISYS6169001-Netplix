@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+    background-color: #121219;
+    font-family: "Poppins", sans-serif;
+}
+
+.actor-image {
+    width: 18rem;
+    height: 22rem;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #727272;
+}
+
+.overlay {
+    width: 18rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.action-button-container {
+    transform: translateY(-250%);
+}
+
+.overlay:hover {
+    opacity: 1;
+}
+
+.overlay:hover .action-button-container {
+    transform: translateY(0);
+}
+
+.card {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+}
+
+.action-button {
+    border-radius: 50%;
+    margin: 0.5rem 0.5rem 0.2rem 0;
+    width: 3rem;
+    height: 3rem;
+    padding: 1rem;
+}
+
+.actor-info {
+    min-height: 22rem;
+}

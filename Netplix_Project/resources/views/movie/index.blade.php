@@ -3,11 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <script src="{{ asset('js/index.js') }}" defer></script>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/lightslider.css') }}" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{ asset('js/lightslider.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
-        integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 @section('content')
     <section class="main-header">
@@ -81,7 +77,7 @@
                 <div class="col d-flex flex-row justify-content-between">
                     <div class="ps-3">
                         <i class="fas fa-film fs-3"></i>
-                        <span class="fs-3 ms-3 fw-bold">Movies</span>
+                        <span class="fs-3 ms-3 fw-bold">Show</span>
                     </div>
                     <input type="text" class="search-movie p-3 text-light" id="search-input" placeholder="Search movie...">
                 </div>
@@ -137,7 +133,8 @@
                 var page = 1;
                 $(window).scroll(function() {
                     if ($(window).scrollTop() + $(window).height() + 1 >= $(document).height() &&
-                        {{ $pages }} > page && activeButton == false && activeButtonSort == false) {
+                        {{ $pages }} > page && activeButton == false && activeButtonSort == false && $(
+                            '#search-input').val() == "") {
                         page++;
                         loadMoreData(page);
                     }
@@ -322,7 +319,6 @@
                                         $(this).html('<i class="fas fa-check text-danger"></i>');
                                         $(this).addClass('added');
                                         $.notify("Added to watchlist", "success");
-                                        console.log(data);
                                     },
                                     error: (data) => {
                                         console.log(data.responseJSON);
@@ -339,7 +335,6 @@
                 randMovies.each(function() {
                     $(this).on('click', function() {
                         var movie_id = $(this).val();
-                        console.log(movie_id);
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

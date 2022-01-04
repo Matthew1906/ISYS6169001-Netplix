@@ -18,13 +18,16 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $attr = $request->validate([
-            'username' => 'required', 'unique:users,username',
-            'email' => ['required', 'email', 'unique:users,email'],
+            'username' => 'required', 'unique:user,username',
+            'email' => ['required', 'email', 'unique:user,email'],
             'password' => ['required', 'min:8'],
             'confirm-password' => ['required', 'same:password']
         ]);
 
-        $countUser = User::count();
+
+        $latestUser = User::latest('user_id')->first();
+        $countUser = (int)substr($latestUser->user_id, -3);
+        $countUser += 1;
 
         $attr['user_id'] = 'USR';
         if ($countUser < 10) {

@@ -122,7 +122,7 @@
 <div class="mb-4">
     <label for="release_date" class="form-label">Release Date</label>
     <input type="date" class="form-control @error('release_date')is-invalid @enderror" name="release_date"
-        value="{{ old('release_date') ?? $movie->release_date }}">
+        value="{{ old('release_date') ?? date('Y-m-d', strtotime($movie->release_date)) }}">
     @error('release_date')
         <div class="invalid-feedback">
             {{ $message }}
